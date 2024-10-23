@@ -37,12 +37,18 @@ namespace DesktopAquarium.Fish
 
         public override void KillFish_Raised(object? sender, KillFishEventArgs e)
         { 
+            if (e.FishID != _settings.FishID)
+                return;
+
             _player?.Stop();
             base.KillFish_Raised(sender, e);
         }
 
         public override void SettingsChanged_Raised(object? sender, SettingsChangedEventArgs e)
         {
+            if (e.FishID != _settings.FishID)
+                return;
+                
             base.SettingsChanged_Raised(sender, e);
             if (e.NewSettings.GetType() == typeof(SharkSettings))
             {
