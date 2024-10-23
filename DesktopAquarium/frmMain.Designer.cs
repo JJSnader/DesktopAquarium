@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             lvFishList = new ListView();
             label1 = new Label();
@@ -44,8 +45,13 @@
             label5 = new Label();
             flpSelectedSettings = new FlowLayoutPanel();
             llCredits = new LinkLabel();
+            notifyIcon1 = new NotifyIcon(components);
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            btnManage = new ToolStripMenuItem();
+            btnQuit = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // lvFishList
@@ -225,6 +231,34 @@
             llCredits.Text = "Credits";
             llCredits.LinkClicked += llCredits_LinkClicked;
             // 
+            // notifyIcon1
+            // 
+            notifyIcon1.ContextMenuStrip = contextMenuStrip1;
+            notifyIcon1.Icon = (Icon)resources.GetObject("notifyIcon1.Icon");
+            notifyIcon1.Text = "Desktop Aquarium";
+            notifyIcon1.Visible = true;
+            notifyIcon1.DoubleClick += notifyIcon1_DoubleClick;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { btnManage, btnQuit });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(118, 48);
+            // 
+            // btnManage
+            // 
+            btnManage.Name = "btnManage";
+            btnManage.Size = new Size(117, 22);
+            btnManage.Text = "Manage";
+            btnManage.Click += btnManage_Click;
+            // 
+            // btnQuit
+            // 
+            btnQuit.Name = "btnQuit";
+            btnQuit.Size = new Size(117, 22);
+            btnQuit.Text = "Exit";
+            btnQuit.Click += btnQuit_Click;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
@@ -248,6 +282,7 @@
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -269,5 +304,9 @@
         private Label label5;
         private FlowLayoutPanel flpSelectedSettings;
         private LinkLabel llCredits;
+        private NotifyIcon notifyIcon1;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem btnManage;
+        private ToolStripMenuItem btnQuit;
     }
 }

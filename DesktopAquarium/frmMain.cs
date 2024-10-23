@@ -245,6 +245,16 @@ namespace DesktopAquarium
         {
             var settingsString = JsonConvert.SerializeObject(_settings, _serializerSettings);
             File.WriteAllText(SettingsFilePath, settingsString);
+
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+            else
+            {
+                notifyIcon1.Dispose();
+            }
         }
 
         private void llRemoveFish_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -380,6 +390,21 @@ namespace DesktopAquarium
         {
             var frm = new frmCredit();
             frm.Show();
+        }
+
+        private void notifyIcon1_DoubleClick(object sender, EventArgs e)
+        {
+            Show();
+        }
+
+        private void btnManage_Click(object sender, EventArgs e)
+        {
+            Show();
+        }
+
+        private void btnQuit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
         #endregion
     }
