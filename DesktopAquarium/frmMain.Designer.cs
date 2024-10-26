@@ -49,6 +49,7 @@
             contextMenuStrip1 = new ContextMenuStrip(components);
             btnManage = new ToolStripMenuItem();
             btnQuit = new ToolStripMenuItem();
+            btnIdentifyFish = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             contextMenuStrip1.SuspendLayout();
@@ -56,7 +57,7 @@
             // 
             // lvFishList
             // 
-            lvFishList.BackColor = Color.FromArgb(0, 105, 228);
+            lvFishList.BackColor = Color.FromArgb(0, 79, 111);
             lvFishList.BorderStyle = BorderStyle.None;
             lvFishList.FullRowSelect = true;
             lvFishList.Location = new Point(19, 133);
@@ -259,12 +260,27 @@
             btnQuit.Text = "Exit";
             btnQuit.Click += btnQuit_Click;
             // 
+            // btnIdentifyFish
+            // 
+            btnIdentifyFish.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnIdentifyFish.BackColor = Color.Black;
+            btnIdentifyFish.FlatStyle = FlatStyle.Flat;
+            btnIdentifyFish.ForeColor = Color.White;
+            btnIdentifyFish.Location = new Point(1031, 30);
+            btnIdentifyFish.Name = "btnIdentifyFish";
+            btnIdentifyFish.Size = new Size(203, 70);
+            btnIdentifyFish.TabIndex = 5;
+            btnIdentifyFish.Text = "Identify Fish";
+            btnIdentifyFish.UseVisualStyleBackColor = false;
+            btnIdentifyFish.Click += btnIdentifyFish_Click;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(0, 148, 255);
+            BackColor = Color.FromArgb(0, 105, 148);
             ClientSize = new Size(1259, 857);
+            Controls.Add(btnIdentifyFish);
             Controls.Add(llCredits);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -308,5 +324,6 @@
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem btnManage;
         private ToolStripMenuItem btnQuit;
+        private Button btnIdentifyFish;
     }
 }

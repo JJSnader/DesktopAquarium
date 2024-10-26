@@ -8,6 +8,7 @@ namespace DesktopAquarium.Fish
     {
         private bool _isFacingLeft;
         private bool _isDragging;
+        private int _identifyFishCountdown;
 
         private Point _targetLocation;
         private Point _dragForm;
@@ -18,9 +19,10 @@ namespace DesktopAquarium.Fish
         private MemoryStream? _memoryStream;
         private Random _rand;
 
-        System.Windows.Forms.Timer _moveTimer;
-        System.Windows.Forms.Timer _idleTimer;
-        System.Windows.Forms.Timer _idleGifStopTimer;
+        private System.Windows.Forms.Timer _moveTimer;
+        private System.Windows.Forms.Timer _idleTimer;
+        private System.Windows.Forms.Timer _idleGifStopTimer;
+        private System.Windows.Forms.Timer _identifyFishTimer;
 
         public PictureBox PbMain
         {
@@ -107,12 +109,19 @@ namespace DesktopAquarium.Fish
             _idleGifStopTimer = new System.Windows.Forms.Timer();
             _idleGifStopTimer.Tick += IdleGifStopTimer_Elapsed;
 
+            _identifyFishTimer = new System.Windows.Forms.Timer();
+            _identifyFishTimer.Interval = 1000;
+            _identifyFishTimer.Tick += IdentifyFishTimer_Elapsed;
+
+            LoadSettings();
+
             if (_settings.FollowCursor)
                 _moveTimer.Start();
             else 
                 _idleTimer.Start();
 
-            LoadSettings();
+
+            lbFishName.Text = _settings.Name ?? "[No name]";
 
             pbMain.MouseDown += frmMain_MouseDown;
             pbMain.MouseUp += frmMain_MouseUp;
@@ -122,12 +131,30 @@ namespace DesktopAquarium.Fish
             MouseMove += frmMain_MouseMove;
         }
 
-        public void SetFormDimensions(int width, int height)
+        /// <summary>
+        /// This must always be called from fish implementing this class.
+        /// This sets the width and height to the proper dimensions 
+        /// (they should match the dimensions of the fish GIFs),
+        /// and sets the inital GIF.
+        /// </summary>
+        /// <param name="width">The width of the form.</param>
+        /// <param name="height">The height of the form.</param>
+        public void InitializeForm(int width, int height)
         {
             Width = width;
             Height = height;
+            lbFishName.Location = new Point((Width / 2) - (lbFishName.Width / 2), (Height / 2) - (lbFishName.Height / 2));
             pbMain.Width = width;
             pbMain.Height = height;
+            _isFacingLeft = true;
+            if ( _settings.FollowCursor )
+            {
+                pbMain.Image = ImageHelper.LoadImageFromBytes(SwimLGif);
+            }
+            else
+            {
+                SetIdleImage(false);
+            }
         }
 
         public void LoadSettings()
@@ -195,6 +222,18 @@ namespace DesktopAquarium.Fish
 
         public void SetIdleImage(bool onlyDefault)
         {
+            if (_settings.FollowCursor)
+            {
+                if (IsFacingLeft)
+                {
+                    pbMain.Image = ImageHelper.LoadImageFromBytes(SwimLGif);
+                }
+                else
+                {
+                    pbMain.Image = ImageHelper.LoadImageFromBytes(SwimRGif);
+                }
+                return;
+            }
             var defaultIdle = DefaultIdleLGif;
             var idleList = IdleLGifs;
             if (!_isFacingLeft)
@@ -242,11 +281,21 @@ namespace DesktopAquarium.Fish
 
         public virtual void MoveTimer_Elapsed(object? sender, EventArgs e)
         {
+            var formCenter = FormCenter;
             if (_settings.FollowCursor)
             {
                 _targetLocation = Cursor.Position;
+                if (_targetLocation.X > formCenter.X && IsFacingLeft)
+                {
+                    IsFacingLeft = false;
+                    PbMain.Image = ImageHelper.LoadImageFromBytes(Properties.Resources.SharkSwimR);
+                }
+                else if (TargetLocation.X < formCenter.X && !IsFacingLeft)
+                {
+                    IsFacingLeft = true;
+                    PbMain.Image = ImageHelper.LoadImageFromBytes(Properties.Resources.SharkSwimL);
+                }
             }
-            var formCenter = FormCenter;
             int deltaX = _targetLocation.X - formCenter.X;
             int deltaY = _targetLocation.Y - formCenter.Y;
 
@@ -288,8 +337,28 @@ namespace DesktopAquarium.Fish
             }
         }
 
+        private void IdentifyFishTimer_Elapsed(object? sender, EventArgs e)
+        {
+            if (_identifyFishCountdown > 0)
+            {
+                _identifyFishCountdown--;
+                return;
+            }
+
+            _identifyFishCountdown = 4;
+            _identifyFishTimer.Stop();
+            lbFishName.Visible = false;
+        }
+
         #endregion
         #region Events
+
+        public virtual void IdentifyFish_Raised(object? sender, EventArgs e)
+        {
+            lbFishName.Visible = true;
+            _identifyFishCountdown = 4;
+            _identifyFishTimer.Start();
+        }
 
         public virtual void KillFish_Raised(object? sender, KillFishEventArgs e)
         {
@@ -309,6 +378,7 @@ namespace DesktopAquarium.Fish
                 return;
 
             _settings = e.NewSettings;
+            lbFishName.Text = _settings.Name ?? "[No name]";
             LoadSettings();
         }
 

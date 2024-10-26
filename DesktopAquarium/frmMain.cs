@@ -20,6 +20,7 @@ namespace DesktopAquarium
 
         private const string SettingsFilePath = @"C:\ProgramData\AquariumSettings.json";
 
+        public event EventHandler<EventArgs> IdentifyFish;
         public event EventHandler<KillFishEventArgs> KillFish;
         public event EventHandler<SettingsChangedEventArgs> SettingsChanged;
 
@@ -190,6 +191,8 @@ namespace DesktopAquarium
 
             _settings.FishList.Add(settingsToUse);
 
+            SaveSettings();
+
             OpenFishForm(settingsToUse);
 
             _newFish = null;
@@ -202,6 +205,7 @@ namespace DesktopAquarium
                 var frm = new Shark((SharkSettings)settingsToUse);
                 KillFish += frm.KillFish_Raised;
                 SettingsChanged += frm.SettingsChanged_Raised;
+                IdentifyFish += frm.IdentifyFish_Raised;
                 frm.Show();
             }
         }
@@ -239,12 +243,17 @@ namespace DesktopAquarium
             return settings;
         }
 
+        private void SaveSettings()
+        {
+            var settingsString = JsonConvert.SerializeObject(_settings, _serializerSettings);
+            File.WriteAllText(SettingsFilePath, settingsString);
+        }
+
         #region Events
 
         private void frmMain_FormClosing(object? sender, FormClosingEventArgs e)
         {
-            var settingsString = JsonConvert.SerializeObject(_settings, _serializerSettings);
-            File.WriteAllText(SettingsFilePath, settingsString);
+            SaveSettings();
 
             if (e.CloseReason == CloseReason.UserClosing)
             {
@@ -380,6 +389,7 @@ namespace DesktopAquarium
                 }
             }
             SettingsChanged?.Invoke(this, new SettingsChangedEventArgs(_selectedFish, _selectedFish.FishID));
+            SaveSettings();
             _selectedFish = null;
             flpSelectedSettings.Controls.Clear();
             lvFishList.SelectedItems.Clear();
@@ -405,6 +415,11 @@ namespace DesktopAquarium
         private void btnQuit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnIdentifyFish_Click(object sender, EventArgs e)
+        {
+            IdentifyFish?.Invoke(this, e);
         }
         #endregion
     }

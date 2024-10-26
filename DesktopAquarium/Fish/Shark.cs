@@ -32,7 +32,7 @@ namespace DesktopAquarium.Fish
             _imageHelper = new ImageHelper();
 
             (var width, var height) = ImageHelper.GetImageDimensions(Properties.Resources.SharkIdle1L);
-            SetFormDimensions(width, height);
+            InitializeForm(width, height);
         }
 
         public override void KillFish_Raised(object? sender, KillFishEventArgs e)

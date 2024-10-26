@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             pbMain = new PictureBox();
+            lbFishName = new Label();
             ((System.ComponentModel.ISupportInitialize)pbMain).BeginInit();
             SuspendLayout();
             // 
@@ -41,22 +42,39 @@
             pbMain.TabIndex = 0;
             pbMain.TabStop = false;
             // 
+            // lbFishName
+            // 
+            lbFishName.AutoSize = true;
+            lbFishName.BackColor = Color.White;
+            lbFishName.Font = new Font("Segoe UI", 15F);
+            lbFishName.ForeColor = Color.Black;
+            lbFishName.Location = new Point(139, 127);
+            lbFishName.Name = "lbFishName";
+            lbFishName.Size = new Size(98, 28);
+            lbFishName.TabIndex = 1;
+            lbFishName.Text = "FishName";
+            lbFishName.Visible = false;
+            // 
             // BaseFish
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(400, 300);
+            Controls.Add(lbFishName);
             Controls.Add(pbMain);
             FormBorderStyle = FormBorderStyle.None;
             Name = "BaseFish";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "BaseFish";
             TransparencyKey = SystemColors.Control;
             ((System.ComponentModel.ISupportInitialize)pbMain).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private PictureBox pbMain;
+        private Label lbFishName;
     }
 }
