@@ -74,6 +74,7 @@
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label1.Font = new Font("Segoe UI", 30F);
+            label1.ForeColor = Color.WhiteSmoke;
             label1.Location = new Point(19, 17);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
@@ -86,6 +87,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 15F);
+            label2.ForeColor = Color.WhiteSmoke;
             label2.Location = new Point(19, 99);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
@@ -96,7 +98,8 @@
             // llRemoveFish
             // 
             llRemoveFish.AutoSize = true;
-            llRemoveFish.LinkColor = Color.Black;
+            llRemoveFish.ForeColor = Color.WhiteSmoke;
+            llRemoveFish.LinkColor = Color.WhiteSmoke;
             llRemoveFish.Location = new Point(237, 99);
             llRemoveFish.Name = "llRemoveFish";
             llRemoveFish.Size = new Size(78, 28);
@@ -114,6 +117,7 @@
             groupBox1.Controls.Add(flpNewSettings);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(cmbFishType);
+            groupBox1.ForeColor = Color.WhiteSmoke;
             groupBox1.Location = new Point(323, 102);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(917, 344);
@@ -124,7 +128,7 @@
             // btnCreateFish
             // 
             btnCreateFish.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCreateFish.BackColor = Color.Black;
+            btnCreateFish.BackColor = Color.Teal;
             btnCreateFish.FlatStyle = FlatStyle.Flat;
             btnCreateFish.ForeColor = Color.White;
             btnCreateFish.Location = new Point(6, 268);
@@ -164,7 +168,7 @@
             // 
             // cmbFishType
             // 
-            cmbFishType.BackColor = Color.Black;
+            cmbFishType.BackColor = Color.Teal;
             cmbFishType.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFishType.FlatStyle = FlatStyle.Flat;
             cmbFishType.ForeColor = Color.White;
@@ -181,6 +185,7 @@
             groupBox2.Controls.Add(btnSaveSettings);
             groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(flpSelectedSettings);
+            groupBox2.ForeColor = Color.White;
             groupBox2.Location = new Point(323, 452);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(917, 375);
@@ -191,7 +196,7 @@
             // btnSaveSettings
             // 
             btnSaveSettings.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnSaveSettings.BackColor = Color.Black;
+            btnSaveSettings.BackColor = Color.Teal;
             btnSaveSettings.FlatStyle = FlatStyle.Flat;
             btnSaveSettings.ForeColor = Color.White;
             btnSaveSettings.Location = new Point(708, 299);
@@ -224,6 +229,7 @@
             // 
             llCredits.AutoSize = true;
             llCredits.Font = new Font("Segoe UI", 12F);
+            llCredits.LinkColor = Color.WhiteSmoke;
             llCredits.Location = new Point(1181, 830);
             llCredits.Name = "llCredits";
             llCredits.Size = new Size(59, 21);
@@ -263,7 +269,7 @@
             // btnIdentifyFish
             // 
             btnIdentifyFish.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnIdentifyFish.BackColor = Color.Black;
+            btnIdentifyFish.BackColor = Color.Teal;
             btnIdentifyFish.FlatStyle = FlatStyle.Flat;
             btnIdentifyFish.ForeColor = Color.White;
             btnIdentifyFish.Location = new Point(1031, 30);
