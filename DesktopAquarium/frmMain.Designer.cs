@@ -59,6 +59,7 @@
             // 
             lvFishList.BackColor = Color.FromArgb(0, 79, 111);
             lvFishList.BorderStyle = BorderStyle.None;
+            lvFishList.ForeColor = SystemColors.Window;
             lvFishList.FullRowSelect = true;
             lvFishList.Location = new Point(19, 133);
             lvFishList.Margin = new Padding(5, 6, 5, 6);
