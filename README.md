@@ -1,5 +1,8 @@
 # DesktopAquarium
+This is a program to create and track the various fishes occupying your desktop.
+## Currently Supported Fish
+# **Shark**
  This expands on my original project, [DesktopShark](https://github.com/JJSnader/DesktopShark).  
- This allows you to see a list of all fish currently spawned (there will be more than just sharks soon)
- and to change their settings without needing to constantly close and reopen the app.  
- The shark cursor chomping mode is also vastly improved from the original Desktop Shark.
+ The shark cursor chomping mode is vastly improved from the original Desktop Shark.
+# **Goldfish** 
+ This is a basic fish designed to be eaten by other fish. However, that functionality doesn't exist yet, so they peacefully cohabitate in the current versions.
