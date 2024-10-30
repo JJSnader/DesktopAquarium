@@ -290,12 +290,12 @@ namespace DesktopAquarium.Fish
                 if (_targetLocation.X > formCenter.X && IsFacingLeft)
                 {
                     IsFacingLeft = false;
-                    PbMain.Image = ImageHelper.LoadImageFromBytes(Properties.Resources.SharkSwimR);
+                    PbMain.Image = ImageHelper.LoadImageFromBytes(SwimRGif);
                 }
                 else if (TargetLocation.X < formCenter.X && !IsFacingLeft)
                 {
                     IsFacingLeft = true;
-                    PbMain.Image = ImageHelper.LoadImageFromBytes(Properties.Resources.SharkSwimL);
+                    PbMain.Image = ImageHelper.LoadImageFromBytes(SwimLGif);
                 }
             }
             int deltaX = _targetLocation.X - formCenter.X;
