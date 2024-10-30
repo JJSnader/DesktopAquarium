@@ -9,8 +9,8 @@ namespace DesktopAquarium.Settings
     public class BaseSettings
     {
         public int FishID { get; set; }
-        public int SharkMoveSpeed { get; set; }
-        public int SharkIdleTimeInMilliseconds { get; set; }
+        public int FishMoveSpeed { get; set; }
+        public int FishIdleTimeInMilliseconds { get; set; }
         public bool AlwaysOnTop { get; set; }
         public bool FollowCursor { get; set; }
         public bool PrimaryScreenOnly { get; set; }
@@ -22,8 +22,8 @@ namespace DesktopAquarium.Settings
 
         public BaseSettings()
         {
-            SharkMoveSpeed = DefaultMoveTimerInterval;
-            SharkIdleTimeInMilliseconds = DefaultIdleTimerInterval;
+            FishMoveSpeed = DefaultMoveTimerInterval;
+            FishIdleTimeInMilliseconds = DefaultIdleTimerInterval;
         }
     }
 }

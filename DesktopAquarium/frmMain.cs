@@ -93,11 +93,12 @@ namespace DesktopAquarium
             {
                 case FishType.Shark:
                     return ImageHelper.LoadImageFromBytes(Properties.Resources.SharkIcon);
+                case FishType.Goldfish:
+                    return ImageHelper.LoadImageFromBytes(Properties.Resources.GoldfishIcon);
                 default:
                     return ImageHelper.LoadImageFromBytes(Properties.Resources.NullIcon);
             }
         }
-
 
         public string AddSpacesBeforeCapitals(string input)
         {
@@ -203,6 +204,14 @@ namespace DesktopAquarium
             if (settingsToUse.GetType() == typeof(SharkSettings))
             {
                 var frm = new Shark((SharkSettings)settingsToUse);
+                KillFish += frm.KillFish_Raised;
+                SettingsChanged += frm.SettingsChanged_Raised;
+                IdentifyFish += frm.IdentifyFish_Raised;
+                frm.Show();
+            }
+            else if (settingsToUse.GetType() == typeof(GoldfishSettings))
+            {
+                var frm = new Goldfish((GoldfishSettings)settingsToUse);
                 KillFish += frm.KillFish_Raised;
                 SettingsChanged += frm.SettingsChanged_Raised;
                 IdentifyFish += frm.IdentifyFish_Raised;
@@ -333,13 +342,18 @@ namespace DesktopAquarium
             {
                 case FishType.Shark:
                     _newFish = new SharkSettings();
-                    _currentFishID++;
-                    _newFish.FishID = _currentFishID;
-                    CreateControlsForFish(_newFish, flpNewSettings);
+                    break;
+                case FishType.Goldfish:
+                    _newFish = new GoldfishSettings();
                     break;
                 default:
                     return;
             }
+
+            _currentFishID++;
+            _newFish.FishID = _currentFishID;
+            _newFish.FishType = (FishType)type;
+            CreateControlsForFish (_newFish, flpNewSettings);
         }
 
         private void cmbFishType_Format(object? sender, ListControlConvertEventArgs e)

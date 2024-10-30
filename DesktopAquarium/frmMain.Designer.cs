@@ -64,7 +64,7 @@
             lvFishList.Margin = new Padding(5, 6, 5, 6);
             lvFishList.MultiSelect = false;
             lvFishList.Name = "lvFishList";
-            lvFishList.Size = new Size(296, 694);
+            lvFishList.Size = new Size(296, 684);
             lvFishList.TabIndex = 0;
             lvFishList.UseCompatibleStateImageBehavior = false;
             lvFishList.View = View.Details;
@@ -183,7 +183,7 @@
             groupBox2.Controls.Add(flpSelectedSettings);
             groupBox2.Location = new Point(323, 452);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(917, 375);
+            groupBox2.Size = new Size(917, 365);
             groupBox2.TabIndex = 5;
             groupBox2.TabStop = false;
             groupBox2.Text = "Edit Selected Fish";
@@ -194,7 +194,7 @@
             btnSaveSettings.BackColor = Color.Black;
             btnSaveSettings.FlatStyle = FlatStyle.Flat;
             btnSaveSettings.ForeColor = Color.White;
-            btnSaveSettings.Location = new Point(708, 299);
+            btnSaveSettings.Location = new Point(708, 284);
             btnSaveSettings.Name = "btnSaveSettings";
             btnSaveSettings.Size = new Size(203, 70);
             btnSaveSettings.TabIndex = 4;
@@ -217,14 +217,15 @@
             flpSelectedSettings.FlowDirection = FlowDirection.TopDown;
             flpSelectedSettings.Location = new Point(6, 77);
             flpSelectedSettings.Name = "flpSelectedSettings";
-            flpSelectedSettings.Size = new Size(696, 292);
+            flpSelectedSettings.Size = new Size(696, 277);
             flpSelectedSettings.TabIndex = 2;
             // 
             // llCredits
             // 
+            llCredits.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             llCredits.AutoSize = true;
             llCredits.Font = new Font("Segoe UI", 12F);
-            llCredits.Location = new Point(1181, 830);
+            llCredits.Location = new Point(1181, 818);
             llCredits.Name = "llCredits";
             llCredits.Size = new Size(59, 21);
             llCredits.TabIndex = 0;
@@ -279,7 +280,7 @@
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 105, 148);
-            ClientSize = new Size(1259, 857);
+            ClientSize = new Size(1259, 848);
             Controls.Add(btnIdentifyFish);
             Controls.Add(llCredits);
             Controls.Add(groupBox2);

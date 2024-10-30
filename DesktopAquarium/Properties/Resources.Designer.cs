@@ -63,6 +63,76 @@ namespace DesktopAquarium.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] GoldfishDefaultIdleL {
+            get {
+                object obj = ResourceManager.GetObject("GoldfishDefaultIdleL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] GoldfishDefaultIdleR {
+            get {
+                object obj = ResourceManager.GetObject("GoldfishDefaultIdleR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] GoldfishDragL {
+            get {
+                object obj = ResourceManager.GetObject("GoldfishDragL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] GoldfishDragR {
+            get {
+                object obj = ResourceManager.GetObject("GoldfishDragR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] GoldfishIcon {
+            get {
+                object obj = ResourceManager.GetObject("GoldfishIcon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] GoldfishSwimL {
+            get {
+                object obj = ResourceManager.GetObject("GoldfishSwimL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] GoldfishSwimR {
+            get {
+                object obj = ResourceManager.GetObject("GoldfishSwimR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] NullIcon {
             get {
                 object obj = ResourceManager.GetObject("NullIcon", resourceCulture);

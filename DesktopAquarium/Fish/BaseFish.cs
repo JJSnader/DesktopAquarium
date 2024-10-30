@@ -160,8 +160,8 @@ namespace DesktopAquarium.Fish
         public void LoadSettings()
         {
             Text = _settings.Name ?? _settings.FishType.ToString();
-            _moveTimer.Interval = _settings.SharkMoveSpeed;
-            _idleTimer.Interval = _settings.SharkIdleTimeInMilliseconds;
+            _moveTimer.Interval = _settings.FishMoveSpeed;
+            _idleTimer.Interval = _settings.FishIdleTimeInMilliseconds;
             TopMost = _settings.AlwaysOnTop;
         }
 
@@ -242,12 +242,14 @@ namespace DesktopAquarium.Fish
                 idleList = IdleRGifs;
             }
 
-            if (onlyDefault)
+            if (onlyDefault || idleList.Count == 0)
             {
                 pbMain.Image = ImageHelper.LoadImageFromBytes(defaultIdle);
             }
             else
             {
+                // don't let this run if there are no other idle animations
+                // or else a divide by zero will happen
                 var defaultOrSpecial = _rand.Next(0, 2);
                 if (defaultOrSpecial == 0)
                     pbMain.Image = ImageHelper.LoadImageFromBytes(defaultIdle);
@@ -323,9 +325,9 @@ namespace DesktopAquarium.Fish
             SetIdleImage(true);
 
             _idleGifStopTimer.Stop();
-            if (_idleGifStopTimer.Interval <= _settings.SharkIdleTimeInMilliseconds)
+            if (_idleGifStopTimer.Interval <= _settings.FishIdleTimeInMilliseconds)
             {
-                _idleTimer.Interval = _settings.SharkIdleTimeInMilliseconds - _idleGifStopTimer.Interval;
+                _idleTimer.Interval = _settings.FishIdleTimeInMilliseconds - _idleGifStopTimer.Interval;
                 _idleTimer.Start();
             }
             else

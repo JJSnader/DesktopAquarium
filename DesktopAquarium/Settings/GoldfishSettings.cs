@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesktopAquarium
+namespace DesktopAquarium.Settings
 {
-    public enum FishType
+    public class GoldfishSettings : BaseSettings
     {
-        Shark,
-        Goldfish
     }
 }
