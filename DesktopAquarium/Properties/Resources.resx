@@ -172,13 +172,13 @@
   <data name="GoldfishDefaultIdleR" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GoldfishIdleR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="GoldfishIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GoldfishIcon.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="GoldfishSwimL" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GoldfishSwimL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="GoldfishSwimR" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GoldfishSwimR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="GoldfishIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GoldfishIcon.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
