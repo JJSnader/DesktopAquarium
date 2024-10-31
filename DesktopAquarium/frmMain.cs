@@ -95,6 +95,8 @@ namespace DesktopAquarium
                     return ImageHelper.LoadImageFromBytes(Properties.Resources.SharkIcon);
                 case FishType.Goldfish:
                     return ImageHelper.LoadImageFromBytes(Properties.Resources.GoldfishIcon);
+                case FishType.Jellyfish:
+                    return ImageHelper.LoadImageFromBytes(Properties.Resources.JellyfishIcon);
                 default:
                     return ImageHelper.LoadImageFromBytes(Properties.Resources.NullIcon);
             }
