@@ -9,6 +9,7 @@ namespace DesktopAquarium
     public enum FishType
     {
         Shark,
-        Goldfish
+        Goldfish,
+        Jellyfish
     }
 }

@@ -133,6 +133,36 @@ namespace DesktopAquarium.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] JellyfishDrag {
+            get {
+                object obj = ResourceManager.GetObject("JellyfishDrag", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] JellyfishIcon {
+            get {
+                object obj = ResourceManager.GetObject("JellyfishIcon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] JellyfishIdle {
+            get {
+                object obj = ResourceManager.GetObject("JellyfishIdle", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] NullIcon {
             get {
                 object obj = ResourceManager.GetObject("NullIcon", resourceCulture);

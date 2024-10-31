@@ -9,7 +9,7 @@ namespace DesktopAquarium.Settings
     public class BaseSettings
     {
         public int FishID { get; set; }
-        public int FishMoveSpeed { get; set; }
+        public int FishMoveInterval { get; set; }
         public int FishIdleTimeInMilliseconds { get; set; }
         public bool AlwaysOnTop { get; set; }
         public bool FollowCursor { get; set; }
@@ -22,7 +22,7 @@ namespace DesktopAquarium.Settings
 
         public BaseSettings()
         {
-            FishMoveSpeed = DefaultMoveTimerInterval;
+            FishMoveInterval = DefaultMoveTimerInterval;
             FishIdleTimeInMilliseconds = DefaultIdleTimerInterval;
         }
     }

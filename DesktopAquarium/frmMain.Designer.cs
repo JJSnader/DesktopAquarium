@@ -50,6 +50,7 @@
             btnManage = new ToolStripMenuItem();
             btnQuit = new ToolStripMenuItem();
             btnIdentifyFish = new Button();
+            llExit = new LinkLabel();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             contextMenuStrip1.SuspendLayout();
@@ -282,12 +283,27 @@
             btnIdentifyFish.UseVisualStyleBackColor = false;
             btnIdentifyFish.Click += btnIdentifyFish_Click;
             // 
+            // llExit
+            // 
+            llExit.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            llExit.AutoSize = true;
+            llExit.Font = new Font("Segoe UI", 8.25F);
+            llExit.LinkColor = Color.WhiteSmoke;
+            llExit.Location = new Point(1157, 7);
+            llExit.Name = "llExit";
+            llExit.Size = new Size(87, 13);
+            llExit.TabIndex = 6;
+            llExit.TabStop = true;
+            llExit.Text = "Exit Application";
+            llExit.LinkClicked += llExit_LinkClicked;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 105, 148);
             ClientSize = new Size(1259, 848);
+            Controls.Add(llExit);
             Controls.Add(btnIdentifyFish);
             Controls.Add(llCredits);
             Controls.Add(groupBox2);
@@ -333,5 +349,6 @@
         private ToolStripMenuItem btnManage;
         private ToolStripMenuItem btnQuit;
         private Button btnIdentifyFish;
+        private LinkLabel llExit;
     }
 }

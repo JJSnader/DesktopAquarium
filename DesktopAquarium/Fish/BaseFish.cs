@@ -160,8 +160,8 @@ namespace DesktopAquarium.Fish
         public void LoadSettings()
         {
             Text = _settings.Name ?? _settings.FishType.ToString();
-            _moveTimer.Interval = _settings.FishMoveSpeed;
-            _idleTimer.Interval = _settings.FishIdleTimeInMilliseconds;
+            _moveTimer.Interval = (int)(_settings.FishMoveInterval / 2.5);
+            _idleTimer.Interval = Math.Max((int)(_settings.FishIdleTimeInMilliseconds / 2.5), 1);
             TopMost = _settings.AlwaysOnTop;
         }
 
@@ -301,11 +301,11 @@ namespace DesktopAquarium.Fish
             int deltaX = _targetLocation.X - formCenter.X;
             int deltaY = _targetLocation.Y - formCenter.Y;
 
-            // Move the form 5 pixels closer to the target
-            if (Math.Abs(deltaX) > 5 || Math.Abs(deltaY) > 5)
+            // Move the form 2 pixels closer to the target
+            if (Math.Abs(deltaX) > 2 || Math.Abs(deltaY) > 2)
             {
-                int moveX = Math.Sign(deltaX) * Math.Min(5, Math.Abs(deltaX));
-                int moveY = Math.Sign(deltaY) * Math.Min(5, Math.Abs(deltaY));
+                int moveX = Math.Sign(deltaX) * Math.Min(2, Math.Abs(deltaX));
+                int moveY = Math.Sign(deltaY) * Math.Min(2, Math.Abs(deltaY));
 
                 Location = new Point(Location.X + moveX, Location.Y + moveY);
             }

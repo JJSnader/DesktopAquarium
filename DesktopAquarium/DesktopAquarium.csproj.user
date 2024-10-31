@@ -10,6 +10,9 @@
     <Compile Update="Fish\Goldfish.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Fish\Jellyfish.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Fish\Shark.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -19,5 +22,10 @@
     <Compile Update="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

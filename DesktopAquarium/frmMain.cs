@@ -217,6 +217,14 @@ namespace DesktopAquarium
                 IdentifyFish += frm.IdentifyFish_Raised;
                 frm.Show();
             }
+            else if (settingsToUse.GetType() == typeof(JellyfishSettings))
+            {
+                Jellyfish frm = new Jellyfish((JellyfishSettings)settingsToUse);
+                KillFish += frm.KillFish_Raised;
+                SettingsChanged += frm.SettingsChanged_Raised;
+                IdentifyFish += frm.IdentifyFish_Raised;
+                frm.Show();
+            }
         }
 
         public BaseSettings GetSettingsFromControls(BaseSettings settings, FlowLayoutPanel panel)
@@ -346,6 +354,9 @@ namespace DesktopAquarium
                 case FishType.Goldfish:
                     _newFish = new GoldfishSettings();
                     break;
+                case FishType.Jellyfish:
+                    _newFish = new JellyfishSettings();
+                    break;
                 default:
                     return;
             }
@@ -353,7 +364,7 @@ namespace DesktopAquarium
             _currentFishID++;
             _newFish.FishID = _currentFishID;
             _newFish.FishType = (FishType)type;
-            CreateControlsForFish (_newFish, flpNewSettings);
+            CreateControlsForFish(_newFish, flpNewSettings);
         }
 
         private void cmbFishType_Format(object? sender, ListControlConvertEventArgs e)
@@ -434,6 +445,11 @@ namespace DesktopAquarium
         private void btnIdentifyFish_Click(object sender, EventArgs e)
         {
             IdentifyFish?.Invoke(this, e);
+        }
+
+        private void llExit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Application.Exit();
         }
         #endregion
     }
