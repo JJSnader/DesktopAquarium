@@ -6,6 +6,8 @@ namespace DesktopAquarium.Fish
 {
     public partial class BaseFish : Form
     {
+        public PointF Position { get; set; }
+
         private bool _isFacingLeft;
         private bool _isDragging;
         private int _identifyFishCountdown;
@@ -101,6 +103,7 @@ namespace DesktopAquarium.Fish
             _rand = new Random(DateTime.Now.GetHashCode());
 
             _moveTimer = new System.Windows.Forms.Timer();
+            _moveTimer.Interval = 16;
             _moveTimer.Tick += MoveTimer_Elapsed;
 
             _idleTimer = new System.Windows.Forms.Timer();
@@ -160,8 +163,7 @@ namespace DesktopAquarium.Fish
         public void LoadSettings()
         {
             Text = _settings.Name ?? _settings.FishType.ToString();
-            _moveTimer.Interval = (int)(_settings.FishMoveInterval / 2.5);
-            _idleTimer.Interval = Math.Max((int)(_settings.FishIdleTimeInMilliseconds / 2.5), 1);
+            _idleTimer.Interval = Math.Max(_settings.FishIdleTimeInMilliseconds, 1);
             TopMost = _settings.AlwaysOnTop;
         }
 
@@ -274,6 +276,14 @@ namespace DesktopAquarium.Fish
         }
 
         #endregion
+        #region Private Methods
+        private void UpdateLocation()
+        {
+            int locX = (int)Math.Round(Position.X, 0);
+            int locY = (int)Math.Round(Position.Y, 0);
+            Location = new Point(locX, locY);
+        }
+        #endregion
         #region Timers
 
         public virtual void IdleTimer_Elapsed(object? sender, EventArgs e)
@@ -298,16 +308,17 @@ namespace DesktopAquarium.Fish
                     PbMain.Image = ImageHelper.LoadImageFromBytes(SwimLGif);
                 }
             }
-            int deltaX = _targetLocation.X - formCenter.X;
-            int deltaY = _targetLocation.Y - formCenter.Y;
+            float deltaX = _targetLocation.X - formCenter.X;
+            float deltaY = _targetLocation.Y - formCenter.Y;
 
-            // Move the form 2 pixels closer to the target
-            if (Math.Abs(deltaX) > 2 || Math.Abs(deltaY) > 2)
+            float speed = _settings.FishMoveSpeed / 20f;
+
+            if (FormCenter != TargetLocation)
             {
-                int moveX = Math.Sign(deltaX) * Math.Min(2, Math.Abs(deltaX));
-                int moveY = Math.Sign(deltaY) * Math.Min(2, Math.Abs(deltaY));
+                float moveX = Math.Sign(deltaX) * Math.Min(speed, Math.Abs(deltaX));
+                float moveY = Math.Sign(deltaY) * Math.Min(speed, Math.Abs(deltaY));
 
-                Location = new Point(Location.X + moveX, Location.Y + moveY);
+                Position = new PointF(Position.X + moveX, Position.Y + moveY);
             }
             else
             {
@@ -318,6 +329,8 @@ namespace DesktopAquarium.Fish
                     SetIdleImage(false);
                 }
             }
+
+            UpdateLocation();
         }
 
         private void IdleGifStopTimer_Elapsed(object? sender, EventArgs e)
@@ -420,6 +433,8 @@ namespace DesktopAquarium.Fish
                     _moveTimer.Start();
                 else
                     _idleTimer.Start();
+
+                Position = Location;
             }
         }
 
