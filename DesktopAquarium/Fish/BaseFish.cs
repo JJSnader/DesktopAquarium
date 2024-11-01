@@ -313,7 +313,7 @@ namespace DesktopAquarium.Fish
 
             float speed = _settings.FishMoveSpeed / 20f;
 
-            if (FormCenter != TargetLocation)
+            if (Math.Abs(FormCenter.X - TargetLocation.X) > 3 && Math.Abs(FormCenter.Y - TargetLocation.Y) > 3)
             {
                 float moveX = Math.Sign(deltaX) * Math.Min(speed, Math.Abs(deltaX));
                 float moveY = Math.Sign(deltaY) * Math.Min(speed, Math.Abs(deltaY));
