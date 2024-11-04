@@ -118,6 +118,9 @@ namespace DesktopAquarium.Fish
 
             LoadSettings();
 
+            Position = GetRandomLocation();
+            UpdateLocation();
+
             if (_settings.FollowCursor)
                 _moveTimer.Start();
             else 
@@ -184,28 +187,12 @@ namespace DesktopAquarium.Fish
                 return currentScreen.WorkingArea;
             }
         }
-
         #region Public Methods
 
         public void MoveToRandomLocation()
         {
-            int newX, newY;
-
-            Rectangle screen;
-            if (_settings.PrimaryScreenOnly)
-                screen = Screen.PrimaryScreen?.Bounds ?? SystemInformation.VirtualScreen;
-            else
-                screen = GetDestinationScreen(); 
-            do
-            {
-                newX = _rand.Next(screen.Left, screen.Right - Width);
-                newY = _rand.Next(screen.Top, screen.Bottom - Height);
-            }
-            while ((Math.Abs(newX - Location.X) < 100 || Math.Abs(newY - Location.Y) < 100)
-            && (Math.Abs(newX - Location.X) > 200 || Math.Abs(newY - Location.Y) > 200));
-
-            _targetLocation = new Point(newX, newY);
-            if (newX > Location.X)
+            _targetLocation = GetRandomLocation();
+            if (_targetLocation.X > Location.X)
             {
                 if (_isFacingLeft)
                     _isFacingLeft = false;
@@ -282,6 +269,26 @@ namespace DesktopAquarium.Fish
             int locX = (int)Math.Round(Position.X, 0);
             int locY = (int)Math.Round(Position.Y, 0);
             Location = new Point(locX, locY);
+        }
+
+        private Point GetRandomLocation()
+        {
+            int newX, newY;
+
+            Rectangle screen;
+            if (_settings.PrimaryScreenOnly)
+                screen = Screen.PrimaryScreen?.Bounds ?? SystemInformation.VirtualScreen;
+            else
+                screen = GetDestinationScreen();
+            do
+            {
+                newX = _rand.Next(screen.Left, screen.Right - Width);
+                newY = _rand.Next(screen.Top, screen.Bottom - Height);
+            }
+            while ((Math.Abs(newX - Location.X) < 100 || Math.Abs(newY - Location.Y) < 100)
+            && (Math.Abs(newX - Location.X) > 200 || Math.Abs(newY - Location.Y) > 200));
+
+            return new Point(newX, newY);
         }
         #endregion
         #region Timers

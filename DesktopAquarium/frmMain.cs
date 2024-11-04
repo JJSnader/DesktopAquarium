@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
-
 using DesktopAquarium.Fish;
 using DesktopAquarium.Settings;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace DesktopAquarium
 {
@@ -203,25 +203,23 @@ namespace DesktopAquarium
 
         private void OpenFishForm(BaseSettings settingsToUse)
         {
+            BaseFish? frm = null;
+
             if (settingsToUse.GetType() == typeof(SharkSettings))
             {
-                var frm = new Shark((SharkSettings)settingsToUse);
-                KillFish += frm.KillFish_Raised;
-                SettingsChanged += frm.SettingsChanged_Raised;
-                IdentifyFish += frm.IdentifyFish_Raised;
-                frm.Show();
+                frm = new Shark((SharkSettings)settingsToUse);
             }
             else if (settingsToUse.GetType() == typeof(GoldfishSettings))
             {
-                var frm = new Goldfish((GoldfishSettings)settingsToUse);
-                KillFish += frm.KillFish_Raised;
-                SettingsChanged += frm.SettingsChanged_Raised;
-                IdentifyFish += frm.IdentifyFish_Raised;
-                frm.Show();
+                frm = new Goldfish((GoldfishSettings)settingsToUse);
             }
             else if (settingsToUse.GetType() == typeof(JellyfishSettings))
             {
-                Jellyfish frm = new Jellyfish((JellyfishSettings)settingsToUse);
+                frm = new Jellyfish((JellyfishSettings)settingsToUse);
+            }
+
+            if (frm is not null)
+            {
                 KillFish += frm.KillFish_Raised;
                 SettingsChanged += frm.SettingsChanged_Raised;
                 IdentifyFish += frm.IdentifyFish_Raised;

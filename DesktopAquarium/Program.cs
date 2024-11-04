@@ -6,12 +6,17 @@ namespace DesktopAquarium
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
+            bool hideOnStart = args.Any(a => a.Contains("--silent"));
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new frmMain());
+
+            Form mainForm = new frmMain();
+            if (hideOnStart) mainForm.Shown += (s, e) => mainForm.Hide();
+            Application.Run(mainForm);
         }
     }
 }
