@@ -97,6 +97,8 @@ namespace DesktopAquarium
                     return ImageHelper.LoadImageFromBytes(Properties.Resources.GoldfishIcon);
                 case FishType.Jellyfish:
                     return ImageHelper.LoadImageFromBytes(Properties.Resources.JellyfishIcon);
+                case FishType.Pufferfish:
+                    return ImageHelper.LoadImageFromBytes(Properties.Resources.PufferIcon);
                 default:
                     return ImageHelper.LoadImageFromBytes(Properties.Resources.NullIcon);
             }
@@ -216,6 +218,10 @@ namespace DesktopAquarium
             else if (settingsToUse.GetType() == typeof(JellyfishSettings))
             {
                 frm = new Jellyfish((JellyfishSettings)settingsToUse);
+            }
+            else if (settingsToUse.GetType() == typeof(PufferfishSettings))
+            {
+                frm = new Pufferfish((PufferfishSettings)settingsToUse);
             }
 
             if (frm is not null)
@@ -356,6 +362,9 @@ namespace DesktopAquarium
                     break;
                 case FishType.Jellyfish:
                     _newFish = new JellyfishSettings();
+                    break;
+                case FishType.Pufferfish:
+                    _newFish = new PufferfishSettings();
                     break;
                 default:
                     return;

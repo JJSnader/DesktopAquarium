@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesktopAquarium
+namespace DesktopAquarium.Settings
 {
-    public enum FishType
+    public class PufferfishSettings : BaseSettings
     {
-        Shark,
-        Goldfish,
-        Jellyfish,
-        Pufferfish
     }
 }

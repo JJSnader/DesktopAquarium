@@ -42,6 +42,12 @@ namespace DesktopAquarium.Fish
             set => _isFacingLeft = value;
         }
 
+        public bool IsDragging
+        {
+            get => _isDragging;
+            set => _isDragging = value;
+        }
+
         public Point TargetLocation
         {
             get => _targetLocation;
@@ -68,7 +74,7 @@ namespace DesktopAquarium.Fish
 
         public Point FormCenter
         {
-            get => new Point(Left + Width / 2, Top + Height / 2);
+            get => new(Left + Width / 2, Top + Height / 2);
         }
 
         public byte[] SwimLGif { get; set; }
@@ -129,10 +135,10 @@ namespace DesktopAquarium.Fish
 
             lbFishName.Text = _settings.Name ?? "[No name]";
 
-            pbMain.MouseDown += frmMain_MouseDown;
+            pbMain.MouseDown += MouseDown_Raised;
             pbMain.MouseUp += frmMain_MouseUp;
             pbMain.MouseMove += frmMain_MouseMove;
-            MouseDown += frmMain_MouseDown;
+            MouseDown += MouseDown_Raised;
             MouseUp += frmMain_MouseUp;
             MouseMove += frmMain_MouseMove;
         }
@@ -404,7 +410,7 @@ namespace DesktopAquarium.Fish
             LoadSettings();
         }
 
-        private void frmMain_MouseDown(object? sender, MouseEventArgs e)
+        public virtual void MouseDown_Raised(object? sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {

@@ -64,7 +64,7 @@
             Controls.Add(pbMain);
             FormBorderStyle = FormBorderStyle.None;
             Name = "BaseFish";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.Manual;
             Text = "BaseFish";
             TransparencyKey = SystemColors.Control;
             ((System.ComponentModel.ISupportInitialize)pbMain).EndInit();

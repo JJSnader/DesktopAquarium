@@ -173,6 +173,176 @@ namespace DesktopAquarium.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] PufferDragL {
+            get {
+                object obj = ResourceManager.GetObject("PufferDragL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PufferDragR {
+            get {
+                object obj = ResourceManager.GetObject("PufferDragR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PufferIcon {
+            get {
+                object obj = ResourceManager.GetObject("PufferIcon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PufferIdleL {
+            get {
+                object obj = ResourceManager.GetObject("PufferIdleL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PufferIdleR {
+            get {
+                object obj = ResourceManager.GetObject("PufferIdleR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PufferPuffedDragL {
+            get {
+                object obj = ResourceManager.GetObject("PufferPuffedDragL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PufferPuffedDragR {
+            get {
+                object obj = ResourceManager.GetObject("PufferPuffedDragR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PufferPuffedIdleL {
+            get {
+                object obj = ResourceManager.GetObject("PufferPuffedIdleL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PufferPuffedIdleR {
+            get {
+                object obj = ResourceManager.GetObject("PufferPuffedIdleR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PufferPuffedSwimL {
+            get {
+                object obj = ResourceManager.GetObject("PufferPuffedSwimL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PufferPuffedSwimR {
+            get {
+                object obj = ResourceManager.GetObject("PufferPuffedSwimR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PufferPuffL {
+            get {
+                object obj = ResourceManager.GetObject("PufferPuffL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PufferPuffR {
+            get {
+                object obj = ResourceManager.GetObject("PufferPuffR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PufferShrinkL {
+            get {
+                object obj = ResourceManager.GetObject("PufferShrinkL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PufferShrinkR {
+            get {
+                object obj = ResourceManager.GetObject("PufferShrinkR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PufferSwimL {
+            get {
+                object obj = ResourceManager.GetObject("PufferSwimL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PufferSwimR {
+            get {
+                object obj = ResourceManager.GetObject("PufferSwimR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] SharkChase {
             get {
                 object obj = ResourceManager.GetObject("SharkChase", resourceCulture);

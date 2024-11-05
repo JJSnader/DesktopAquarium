@@ -181,9 +181,6 @@
   <data name="GoldfishSwimR" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GoldfishSwimR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="GoldfishIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GoldfishIcon.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="JellyfishIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\JellyfishIcon.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -192,5 +189,56 @@
   </data>
   <data name="JellyfishDrag" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\JellyfishDrag.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PufferDragL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PufferDragL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PufferIdleL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PufferIdleL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PufferIdleR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PufferIdleR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PufferPuffedDragL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PufferPuffedDragL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PufferPuffedDragR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PufferPuffedDragR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PufferPuffedIdleR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PufferPuffedIdleR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PufferPuffedIdleL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PufferPuffedIdleL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PufferPuffedSwimL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PufferPuffedSwimL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PufferPuffedSwimR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PufferPuffedSwimR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PufferPuffL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PufferPuffL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PufferShrinkL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PufferShrinkL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PufferShrinkR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PufferShrinkR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PufferSwimL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PufferSwimL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PufferSwimR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PufferSwimR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PufferIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PufferIcon.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PufferDragR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PufferDragR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PufferPuffR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PufferPuffR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

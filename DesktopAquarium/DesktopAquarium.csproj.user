@@ -13,6 +13,9 @@
     <Compile Update="Fish\Jellyfish.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Fish\Pufferfish.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Fish\Shark.cs">
       <SubType>Form</SubType>
     </Compile>
