@@ -8,3 +8,5 @@ This is a program to create and track the various fishes occupying your desktop.
  This is a basic fish designed to be eaten by other fish. However, that functionality doesn't exist yet, so they peacefully cohabitate in the current versions.
 ### **Jellyfish**
  Doesn't do much, but still looks kinda cool.
+### **Pufferfish**
+ Swims around like a normal fish, but if you right-click on him, he puffs up.
