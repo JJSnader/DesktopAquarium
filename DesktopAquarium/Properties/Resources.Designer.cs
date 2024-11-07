@@ -469,5 +469,75 @@ namespace DesktopAquarium.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SubDragL {
+            get {
+                object obj = ResourceManager.GetObject("SubDragL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SubDragR {
+            get {
+                object obj = ResourceManager.GetObject("SubDragR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SubIdleL {
+            get {
+                object obj = ResourceManager.GetObject("SubIdleL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SubIdleR {
+            get {
+                object obj = ResourceManager.GetObject("SubIdleR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SubmarineIcon {
+            get {
+                object obj = ResourceManager.GetObject("SubmarineIcon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SubSwimL {
+            get {
+                object obj = ResourceManager.GetObject("SubSwimL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SubSwimR {
+            get {
+                object obj = ResourceManager.GetObject("SubSwimR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

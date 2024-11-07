@@ -241,4 +241,25 @@
   <data name="PufferPuffR" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PufferPuffR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="SubDragL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SubDragL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SubDragR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SubDragR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SubIdleL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SubIdleL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SubIdleR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SubIdleR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SubSwimL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SubSwimL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SubSwimR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SubSwimR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SubmarineIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SubmarineIcon.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

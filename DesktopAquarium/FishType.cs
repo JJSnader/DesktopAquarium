@@ -11,6 +11,7 @@ namespace DesktopAquarium
         Shark,
         Goldfish,
         Jellyfish,
-        Pufferfish
+        Pufferfish,
+        Submarine
     }
 }

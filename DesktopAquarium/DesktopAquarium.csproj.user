@@ -19,6 +19,9 @@
     <Compile Update="Fish\Shark.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Fish\Submarine.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmCredit.cs">
       <SubType>Form</SubType>
     </Compile>

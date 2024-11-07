@@ -74,14 +74,14 @@ namespace DesktopAquarium
             if (fish == null)
                 return;
 
-            _fishImages.Images.Add(fish.Name ?? fish.FishType.ToString(), GetIconForFish(fish.FishType));
+            _fishImages.Images.Add(fish.FishID.ToString(), GetIconForFish(fish.FishType));
 
             lvFishList.SmallImageList = _fishImages;
             var newItem = new ListViewItem(fish.Name)
             {
                 Text = string.Empty,
                 Tag = fish.FishID,
-                ImageKey = fish.Name ?? fish.FishType.ToString()
+                ImageKey = fish.FishID.ToString()
             };
             newItem.SubItems.Add(fish.Name);
             lvFishList.Items.Add(newItem);
@@ -99,6 +99,8 @@ namespace DesktopAquarium
                     return ImageHelper.LoadImageFromBytes(Properties.Resources.JellyfishIcon);
                 case FishType.Pufferfish:
                     return ImageHelper.LoadImageFromBytes(Properties.Resources.PufferIcon);
+                case FishType.Submarine:
+                    return ImageHelper.LoadImageFromBytes(Properties.Resources.SubmarineIcon);
                 default:
                     return ImageHelper.LoadImageFromBytes(Properties.Resources.NullIcon);
             }
@@ -419,6 +421,22 @@ namespace DesktopAquarium
                 if (_settings.FishList[i].FishID == _selectedFish.FishID)
                 {
                     _settings.FishList[i] = _selectedFish;
+                    break;
+                }
+            }
+
+            // change fish name in list if it changed
+            for (int i = 0; i < lvFishList.Items.Count; ++i)
+            {
+                if (((int?)lvFishList.Items[i].Tag ?? 0) == _selectedFish.FishID)
+                {
+                    //var imageKey = lvFishList.Items[i].ImageKey;
+                    if (_selectedFish.Name != null)
+                    {
+                        lvFishList.Items[i].SubItems.Clear();
+                        lvFishList.Items[i].SubItems.Add(_selectedFish.Name);
+                    }
+
                     break;
                 }
             }
