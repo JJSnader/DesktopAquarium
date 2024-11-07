@@ -10,3 +10,5 @@ This is a program to create and track the various fishes occupying your desktop.
  Doesn't do much, but still looks kinda cool.
 ### **Pufferfish**
  Swims around like a normal fish, but if you right-click on him, he puffs up.
+### **Submarine**
+ An imposter pretending to be a fish. He gets angry if you interfere with his submarine moving.
