@@ -225,6 +225,10 @@ namespace DesktopAquarium
             {
                 frm = new Pufferfish((PufferfishSettings)settingsToUse);
             }
+            else if (settingsToUse.GetType() == typeof(SubmarineSettings))
+            {
+                frm = new Submarine((SubmarineSettings)settingsToUse);
+            }
 
             if (frm is not null)
             {
@@ -367,6 +371,9 @@ namespace DesktopAquarium
                     break;
                 case FishType.Pufferfish:
                     _newFish = new PufferfishSettings();
+                    break;
+                case FishType.Submarine:
+                    _newFish = new SubmarineSettings();
                     break;
                 default:
                     return;
