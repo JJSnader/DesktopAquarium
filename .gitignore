@@ -4,3 +4,4 @@
 /.vs
 /DesktopAquarium/obj
 /DesktopAquarium/bin
+*.user
