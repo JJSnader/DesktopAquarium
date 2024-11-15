@@ -6,6 +6,7 @@ namespace DesktopAquarium.Fish
     public partial class Pufferfish : BaseFish
     {
         private bool _isPuffed;
+        private PufferfishSettings _settings;
 
         private System.Windows.Forms.Timer _transitionTimer;
         private System.Windows.Forms.Timer _shrinkTimer;
@@ -16,6 +17,7 @@ namespace DesktopAquarium.Fish
         {
             InitializeComponent();
             _isPuffed = false;
+            _settings = settings;
             _transitionTimer = new System.Windows.Forms.Timer();
             var ih = new ImageHelper();
             _transitionTimer.Interval = ih.GetGifDuration(Properties.Resources.PufferPuffL) - 10;
@@ -78,7 +80,14 @@ namespace DesktopAquarium.Fish
             _transitionTimer.Stop();
             if (_isPuffed) 
                 _shrinkTimer.Start();
-            IdleTimer.Start();
+            if (_settings.FollowCursor)
+            {
+                MoveTimer.Start();
+            }
+            else
+            {
+                IdleTimer.Start();
+            }
         }
 
         private void ShrinkTimer_Tick(object? sender, EventArgs e)

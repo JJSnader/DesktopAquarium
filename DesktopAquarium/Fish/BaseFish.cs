@@ -169,13 +169,6 @@ namespace DesktopAquarium.Fish
             }
         }
 
-        public void LoadSettings()
-        {
-            Text = _settings.Name ?? _settings.FishType.ToString();
-            _idleTimer.Interval = Math.Max(_settings.FishIdleTimeInMilliseconds, 1);
-            TopMost = _settings.AlwaysOnTop;
-        }
-
         private Rectangle GetDestinationScreen()
         {
             var screens = Screen.AllScreens;
@@ -194,6 +187,13 @@ namespace DesktopAquarium.Fish
             }
         }
         #region Public Methods
+
+        public void LoadSettings()
+        {
+            Text = _settings.Name ?? _settings.FishType.ToString();
+            _idleTimer.Interval = Math.Max(_settings.FishIdleTimeInMilliseconds, 1);
+            TopMost = _settings.AlwaysOnTop;
+        }
 
         public void MoveToRandomLocation()
         {
@@ -326,7 +326,7 @@ namespace DesktopAquarium.Fish
 
             float speed = _settings.FishMoveSpeed / 20f;
 
-            if (Math.Abs(FormCenter.X - TargetLocation.X) > 3 && Math.Abs(FormCenter.Y - TargetLocation.Y) > 3)
+            if (Math.Abs(FormCenter.X - TargetLocation.X) > 3 || Math.Abs(FormCenter.Y - TargetLocation.Y) > 3)
             {
                 float moveX = Math.Sign(deltaX) * Math.Min(speed, Math.Abs(deltaX));
                 float moveY = Math.Sign(deltaY) * Math.Min(speed, Math.Abs(deltaY));
