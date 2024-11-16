@@ -53,7 +53,11 @@ namespace DesktopAquarium
                 if (settings != null && settings.FishList.Count > 0)
                 {
                     _settings = settings;
-                    foreach (BaseSettings fish in settings.FishList)
+                    var orderedList = settings.FishList
+                        .OrderBy(bs => bs.FishType)
+                        .ThenBy(bs => bs.Name)
+                        .ToList();
+                    foreach (BaseSettings fish in orderedList)
                     {
                         _currentFishID = Math.Max(_currentFishID, fish.FishID + 1);
                         AddFishToList(fish);
@@ -445,6 +449,18 @@ namespace DesktopAquarium
                     }
 
                     break;
+                }
+
+                var orderedList = _settings.FishList
+                .OrderBy(bs => bs.FishType)
+                .ThenBy(bs => bs.Name)
+                .ToList();
+                lvFishList.Items.Clear();
+                _fishImages.Images.Clear();
+                foreach (BaseSettings fish in orderedList)
+                {
+                    _currentFishID = Math.Max(_currentFishID, fish.FishID + 1);
+                    AddFishToList(fish);
                 }
             }
             SettingsChanged?.Invoke(this, new SettingsChangedEventArgs(_selectedFish, _selectedFish.FishID));
