@@ -42,6 +42,7 @@ namespace DesktopAquarium
             label6 = new Label();
             label7 = new Label();
             label8 = new Label();
+            label9 = new Label();
             SuspendLayout();
             // 
             // linkLabel1
@@ -60,6 +61,7 @@ namespace DesktopAquarium
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 15F);
             label1.Location = new Point(12, 133);
             label1.Name = "label1";
             label1.Size = new Size(131, 28);
@@ -70,7 +72,7 @@ namespace DesktopAquarium
             // 
             linkLabel2.AutoSize = true;
             linkLabel2.LinkColor = Color.Black;
-            linkLabel2.Location = new Point(12, 172);
+            linkLabel2.Location = new Point(12, 161);
             linkLabel2.Name = "linkLabel2";
             linkLabel2.Size = new Size(89, 28);
             linkLabel2.TabIndex = 2;
@@ -83,7 +85,7 @@ namespace DesktopAquarium
             // 
             linkLabel3.AutoSize = true;
             linkLabel3.LinkColor = Color.Black;
-            linkLabel3.Location = new Point(12, 205);
+            linkLabel3.Location = new Point(12, 194);
             linkLabel3.Name = "linkLabel3";
             linkLabel3.Size = new Size(139, 28);
             linkLabel3.TabIndex = 3;
@@ -95,10 +97,11 @@ namespace DesktopAquarium
             // linkLabel4
             // 
             linkLabel4.AutoSize = true;
+            linkLabel4.Font = new Font("Segoe UI", 10F);
             linkLabel4.LinkColor = Color.Black;
-            linkLabel4.Location = new Point(12, 519);
+            linkLabel4.Location = new Point(12, 443);
             linkLabel4.Name = "linkLabel4";
-            linkLabel4.Size = new Size(297, 28);
+            linkLabel4.Size = new Size(208, 19);
             linkLabel4.TabIndex = 4;
             linkLabel4.TabStop = true;
             linkLabel4.Text = "https://freesound.org/s/543386/";
@@ -107,28 +110,31 @@ namespace DesktopAquarium
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 491);
+            label2.Font = new Font("Segoe UI", 10F);
+            label2.Location = new Point(12, 424);
             label2.Name = "label2";
-            label2.Size = new Size(516, 28);
+            label2.Size = new Size(361, 19);
             label2.TabIndex = 5;
             label2.Text = "Shark Chomping Sound - Nom Noise by TheDragonSpark";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 407);
+            label3.Font = new Font("Segoe UI", 10F);
+            label3.Location = new Point(12, 377);
             label3.Name = "label3";
-            label3.Size = new Size(557, 28);
+            label3.Size = new Size(393, 19);
             label3.TabIndex = 6;
             label3.Text = "Shark Chasing Sound - Low-bit Retro Chase Loop by digimistic";
             // 
             // linkLabel5
             // 
             linkLabel5.AutoSize = true;
+            linkLabel5.Font = new Font("Segoe UI", 10F);
             linkLabel5.LinkColor = Color.Black;
-            linkLabel5.Location = new Point(12, 435);
+            linkLabel5.Location = new Point(12, 396);
             linkLabel5.Name = "linkLabel5";
-            linkLabel5.Size = new Size(297, 28);
+            linkLabel5.Size = new Size(208, 19);
             linkLabel5.TabIndex = 7;
             linkLabel5.TabStop = true;
             linkLabel5.Text = "https://freesound.org/s/703692/";
@@ -137,7 +143,7 @@ namespace DesktopAquarium
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 368);
+            label4.Location = new Point(12, 330);
             label4.Name = "label4";
             label4.Size = new Size(66, 28);
             label4.TabIndex = 8;
@@ -146,7 +152,7 @@ namespace DesktopAquarium
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(12, 256);
+            label5.Location = new Point(12, 234);
             label5.Name = "label5";
             label5.Size = new Size(70, 28);
             label5.TabIndex = 9;
@@ -166,7 +172,7 @@ namespace DesktopAquarium
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(12, 284);
+            label7.Location = new Point(12, 262);
             label7.Name = "label7";
             label7.Size = new Size(150, 28);
             label7.TabIndex = 11;
@@ -175,18 +181,28 @@ namespace DesktopAquarium
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(12, 321);
+            label8.Location = new Point(12, 290);
             label8.Name = "label8";
             label8.Size = new Size(133, 28);
             label8.TabIndex = 12;
             label8.Text = "Japheth Beiler";
+            // 
+            // label9
+            // 
+            label9.Font = new Font("Segoe UI", 10F);
+            label9.Location = new Point(12, 467);
+            label9.Name = "label9";
+            label9.Size = new Size(577, 210);
+            label9.TabIndex = 13;
+            label9.Text = resources.GetString("label9.Text");
             // 
             // frmCredit
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 148, 255);
-            ClientSize = new Size(601, 556);
+            ClientSize = new Size(601, 716);
+            Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(label6);
@@ -224,5 +240,6 @@ namespace DesktopAquarium
         private Label label6;
         private Label label7;
         private Label label8;
+        private Label label9;
     }
 }
