@@ -12,3 +12,5 @@ This is a program to create and track the various fishes occupying your desktop.
  Swims around like a normal fish, but if you right-click on him, he puffs up.
 ### **Submarine**
  An imposter pretending to be a fish. He gets angry if you interfere with his submarine moving.
+### **Sperm Whale**
+ A sperm whale who frequently talks to himself. If given the right name, he'll cosplay as a whale from a famous classic.
