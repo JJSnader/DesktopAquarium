@@ -105,6 +105,8 @@ namespace DesktopAquarium
                     return ImageHelper.LoadImageFromBytes(Properties.Resources.PufferIcon);
                 case FishType.Submarine:
                     return ImageHelper.LoadImageFromBytes(Properties.Resources.SubmarineIcon);
+                case FishType.SpermWhale:
+                    return ImageHelper.LoadImageFromBytes(Properties.Resources.SpermWhaleIcon);
                 default:
                     return ImageHelper.LoadImageFromBytes(Properties.Resources.NullIcon);
             }
@@ -168,6 +170,25 @@ namespace DesktopAquarium
                         Checked = (bool?)property.GetValue(settings, null) ?? false
                     };
                     panel.Controls.Add(checkBox);
+                }
+                else if (property.PropertyType == typeof(Frequency))
+                {
+                    Label label = new Label
+                    {
+                        Text = AddSpacesBeforeCapitals(property.Name),
+                        AutoSize = true,
+                    };
+                    panel.Controls.Add(label);
+                    var frequencies = Enum.GetValues(typeof(Frequency)).Cast<Frequency>().ToList();
+                    ComboBox cb = new()
+                    {
+                        Name = property.Name,
+                        DataSource = frequencies,
+                    };
+
+                    panel.Controls.Add(cb);
+                    if (cb.DataSource != null && cb.Items.Count > 0)
+                        cb.SelectedIndex = (int)(property.GetValue(settings, null) ?? 0);
                 }
                 else if (property.PropertyType != typeof(FishType))
                 {
@@ -233,6 +254,10 @@ namespace DesktopAquarium
             {
                 frm = new Submarine((SubmarineSettings)settingsToUse);
             }
+            else if (settingsToUse.GetType() == typeof(SpermWhaleSettings))
+            {
+                frm = new SpermWhale((SpermWhaleSettings)settingsToUse);
+            }
 
             if (frm is not null)
             {
@@ -269,6 +294,14 @@ namespace DesktopAquarium
                     if (property != null && property.PropertyType == typeof(string))
                     {
                         property.SetValue(settings, textBox.Text);
+                    }
+                }
+                else if (ctrl is ComboBox comboBox)
+                {
+                    var property = settings.GetType().GetProperty(comboBox.Name);
+                    if (property != null && property.PropertyType == typeof(Frequency))
+                    {
+                        property.SetValue(settings, comboBox.SelectedIndex);
                     }
                 }
             }
@@ -378,6 +411,9 @@ namespace DesktopAquarium
                     break;
                 case FishType.Submarine:
                     _newFish = new SubmarineSettings();
+                    break;
+                case FishType.SpermWhale:
+                    _newFish = new SpermWhaleSettings();
                     break;
                 default:
                     return;

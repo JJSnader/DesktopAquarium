@@ -353,7 +353,11 @@ namespace DesktopAquarium.Fish
             _idleGifStopTimer.Stop();
             if (_idleGifStopTimer.Interval <= _settings.FishIdleTimeInMilliseconds)
             {
-                _idleTimer.Interval = _settings.FishIdleTimeInMilliseconds - _idleGifStopTimer.Interval;
+                var remainingInterval = _settings.FishIdleTimeInMilliseconds - _idleGifStopTimer.Interval;
+                if (remainingInterval > 0)
+                    _idleTimer.Interval = remainingInterval;
+                else
+                    _idleTimer.Interval = 1;
                 _idleTimer.Start();
             }
             else

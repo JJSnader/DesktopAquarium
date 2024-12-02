@@ -163,6 +163,66 @@ namespace DesktopAquarium.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] MobyDickDragL {
+            get {
+                object obj = ResourceManager.GetObject("MobyDickDragL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MobyDickDragR {
+            get {
+                object obj = ResourceManager.GetObject("MobyDickDragR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MobyDickIdleL {
+            get {
+                object obj = ResourceManager.GetObject("MobyDickIdleL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MobyDickIdleR {
+            get {
+                object obj = ResourceManager.GetObject("MobyDickIdleR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MobyDickSwimL {
+            get {
+                object obj = ResourceManager.GetObject("MobyDickSwimL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MobyDickSwimR {
+            get {
+                object obj = ResourceManager.GetObject("MobyDickSwimR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] NullIcon {
             get {
                 object obj = ResourceManager.GetObject("NullIcon", resourceCulture);
@@ -473,6 +533,96 @@ namespace DesktopAquarium.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] SpermWhaleDragL {
+            get {
+                object obj = ResourceManager.GetObject("SpermWhaleDragL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SpermWhaleDragR {
+            get {
+                object obj = ResourceManager.GetObject("SpermWhaleDragR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SpermWhaleIcon {
+            get {
+                object obj = ResourceManager.GetObject("SpermWhaleIcon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SpermWhaleIdle1L {
+            get {
+                object obj = ResourceManager.GetObject("SpermWhaleIdle1L", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SpermWhaleIdle1R {
+            get {
+                object obj = ResourceManager.GetObject("SpermWhaleIdle1R", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SpermWhaleIdleL {
+            get {
+                object obj = ResourceManager.GetObject("SpermWhaleIdleL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SpermWhaleIdleR {
+            get {
+                object obj = ResourceManager.GetObject("SpermWhaleIdleR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SpermWhaleSwimL {
+            get {
+                object obj = ResourceManager.GetObject("SpermWhaleSwimL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SpermWhaleSwimR {
+            get {
+                object obj = ResourceManager.GetObject("SpermWhaleSwimR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] SubDragL {
             get {
                 object obj = ResourceManager.GetObject("SubDragL", resourceCulture);
@@ -536,6 +686,46 @@ namespace DesktopAquarium.Properties {
         internal static byte[] SubSwimR {
             get {
                 object obj = ResourceManager.GetObject("SubSwimR", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] whale_goofy {
+            get {
+                object obj = ResourceManager.GetObject("whale_goofy", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] whale1 {
+            get {
+                object obj = ResourceManager.GetObject("whale1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] whale2 {
+            get {
+                object obj = ResourceManager.GetObject("whale2", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] whale3 {
+            get {
+                object obj = ResourceManager.GetObject("whale3", resourceCulture);
                 return ((byte[])(obj));
             }
         }

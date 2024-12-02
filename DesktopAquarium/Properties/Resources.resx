@@ -262,4 +262,61 @@
   <data name="SubmarineIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SubmarineIcon.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="SpermWhaleIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SpermWhaleIcon.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="whale1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\whale1.wav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="whale2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\whale2.wav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="whale3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\whale3.wav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="whale_goofy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\whale_goofy.wav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MobyDickDragL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MobyDickDragL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MobyDickDragR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MobyDickDragR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MobyDickIdleL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MobyDickIdleL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MobyDickIdleR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MobyDickIdleR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MobyDickSwimL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MobyDickSwimL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MobyDickSwimR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MobyDickSwimR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SpermWhaleDragL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SpermWhaleDragL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SpermWhaleDragR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SpermWhaleDragR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SpermWhaleIdle1L" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SpermWhaleIdle1L.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SpermWhaleIdle1R" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SpermWhaleIdle1R.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SpermWhaleIdleR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SpermWhaleIdleR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SpermWhaleSwimL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SpermWhaleSwimL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SpermWhaleSwimR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SpermWhaleSwimR.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SpermWhaleIdleL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SpermWhaleIdleL.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
