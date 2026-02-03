@@ -51,6 +51,9 @@
             btnQuit = new ToolStripMenuItem();
             btnIdentifyFish = new Button();
             llExit = new LinkLabel();
+            btnMakeSeaweed = new Button();
+            label6 = new Label();
+            tbScale = new TextBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             contextMenuStrip1.SuspendLayout();
@@ -201,7 +204,7 @@
             btnSaveSettings.BackColor = Color.Teal;
             btnSaveSettings.FlatStyle = FlatStyle.Flat;
             btnSaveSettings.ForeColor = Color.White;
-            btnSaveSettings.Location = new Point(708, 284);
+            btnSaveSettings.Location = new Point(6, 289);
             btnSaveSettings.Name = "btnSaveSettings";
             btnSaveSettings.Size = new Size(203, 70);
             btnSaveSettings.TabIndex = 4;
@@ -212,7 +215,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(6, 46);
+            label5.Location = new Point(215, 51);
             label5.Name = "label5";
             label5.Size = new Size(201, 28);
             label5.TabIndex = 3;
@@ -222,7 +225,7 @@
             // 
             flpSelectedSettings.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             flpSelectedSettings.FlowDirection = FlowDirection.TopDown;
-            flpSelectedSettings.Location = new Point(6, 77);
+            flpSelectedSettings.Location = new Point(215, 82);
             flpSelectedSettings.Name = "flpSelectedSettings";
             flpSelectedSettings.Size = new Size(696, 277);
             flpSelectedSettings.TabIndex = 2;
@@ -277,7 +280,7 @@
             btnIdentifyFish.ForeColor = Color.White;
             btnIdentifyFish.Location = new Point(1037, 29);
             btnIdentifyFish.Name = "btnIdentifyFish";
-            btnIdentifyFish.Size = new Size(203, 70);
+            btnIdentifyFish.Size = new Size(203, 80);
             btnIdentifyFish.TabIndex = 5;
             btnIdentifyFish.Text = "Identify Fish";
             btnIdentifyFish.UseVisualStyleBackColor = false;
@@ -297,12 +300,46 @@
             llExit.Text = "Exit Application";
             llExit.LinkClicked += llExit_LinkClicked;
             // 
+            // btnMakeSeaweed
+            // 
+            btnMakeSeaweed.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMakeSeaweed.BackColor = Color.Teal;
+            btnMakeSeaweed.FlatStyle = FlatStyle.Flat;
+            btnMakeSeaweed.ForeColor = Color.White;
+            btnMakeSeaweed.Location = new Point(828, 29);
+            btnMakeSeaweed.Name = "btnMakeSeaweed";
+            btnMakeSeaweed.Size = new Size(203, 40);
+            btnMakeSeaweed.TabIndex = 7;
+            btnMakeSeaweed.Text = "Create Seaweed";
+            btnMakeSeaweed.UseVisualStyleBackColor = false;
+            btnMakeSeaweed.Click += btnMakeSeaweed_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(828, 78);
+            label6.Name = "label6";
+            label6.Size = new Size(57, 28);
+            label6.TabIndex = 5;
+            label6.Text = "Scale";
+            // 
+            // tbScale
+            // 
+            tbScale.Location = new Point(891, 75);
+            tbScale.Name = "tbScale";
+            tbScale.Size = new Size(140, 34);
+            tbScale.TabIndex = 8;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 105, 148);
             ClientSize = new Size(1259, 848);
+            Controls.Add(tbScale);
+            Controls.Add(label6);
+            Controls.Add(btnMakeSeaweed);
             Controls.Add(llExit);
             Controls.Add(btnIdentifyFish);
             Controls.Add(llCredits);
@@ -350,5 +387,8 @@
         private ToolStripMenuItem btnQuit;
         private Button btnIdentifyFish;
         private LinkLabel llExit;
+        private Button btnMakeSeaweed;
+        private Label label6;
+        private TextBox tbScale;
     }
 }

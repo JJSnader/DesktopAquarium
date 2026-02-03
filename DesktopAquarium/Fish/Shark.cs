@@ -11,6 +11,7 @@ namespace DesktopAquarium.Fish
         private SharkSettings _settings;
         private ImageHelper _imageHelper;
         private bool _defaultFollowCursorSetting;
+        private bool _cursorFollowSetByChase = false;
 
         private const int ChaseDuration = 15;
 
@@ -33,6 +34,8 @@ namespace DesktopAquarium.Fish
 
             (var width, var height) = ImageHelper.GetImageDimensions(Properties.Resources.SharkIdle1L);
             InitializeForm(width, height);
+
+            FormClosed += Shark_Closed;
         }
 
         public override void KillFish_Raised(object? sender, KillFishEventArgs e)
@@ -62,6 +65,14 @@ namespace DesktopAquarium.Fish
             }
         }
 
+        private void Shark_Closed(object? sender, EventArgs e)
+        {
+            if (_cursorFollowSetByChase)
+            {
+                _settings.FollowCursor = _defaultFollowCursorSetting;
+            }
+        }
+
         public override void MoveTimer_Elapsed(object? sender, EventArgs e)
         {
             if (!_settings.CursorChompEnabled)
@@ -79,6 +90,8 @@ namespace DesktopAquarium.Fish
             {
                 _isChasing = true;
                 _chaseStartTime = DateTime.Now;
+                if (_settings.FollowCursor == false)
+                    _cursorFollowSetByChase = true;
                 _settings.FollowCursor = true;
                 IdleTimer.Stop();
                 IdleGifStopTimer.Stop();
@@ -109,6 +122,7 @@ namespace DesktopAquarium.Fish
                         MoveTimer.Stop();
                         _isChasing = false;
                         _settings.FollowCursor = _defaultFollowCursorSetting;
+                        _cursorFollowSetByChase = false;
                         doBaseMove = false;
 
                         if (chaseTime.Seconds < ChaseDuration)

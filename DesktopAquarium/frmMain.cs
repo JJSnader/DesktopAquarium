@@ -3,14 +3,15 @@ using DesktopAquarium.Fish;
 using DesktopAquarium.Settings;
 using System.Reflection;
 using System.Windows.Forms;
+using DesktopAquarium.Plants;
 
 namespace DesktopAquarium
 {
     public partial class frmMain : Form
     {
         private AquariumSettings _settings;
-        private BaseSettings? _newFish;
-        private BaseSettings? _selectedFish;
+        private BaseFishSettings? _newFish;
+        private BaseFishSettings? _selectedFish;
         private ImageHelper _imageHelper;
         private ImageList _fishImages;
         private JsonSerializerSettings _serializerSettings;
@@ -57,7 +58,7 @@ namespace DesktopAquarium
                         .OrderBy(bs => bs.FishType)
                         .ThenBy(bs => bs.Name)
                         .ToList();
-                    foreach (BaseSettings fish in orderedList)
+                    foreach (BaseFishSettings fish in orderedList)
                     {
                         _currentFishID = Math.Max(_currentFishID, fish.FishID + 1);
                         AddFishToList(fish);
@@ -73,7 +74,7 @@ namespace DesktopAquarium
             FormClosing += frmMain_FormClosing;
         }
 
-        private void AddFishToList(BaseSettings fish)
+        private void AddFishToList(BaseFishSettings fish)
         {
             if (fish == null)
                 return;
@@ -133,7 +134,7 @@ namespace DesktopAquarium
             return result.ToString();
         }
 
-        private void CreateControlsForFish(BaseSettings settings, FlowLayoutPanel panel)
+        private void CreateControlsForFish(BaseFishSettings settings, FlowLayoutPanel panel)
         {
             Type objType = settings.GetType();
             panel.Controls.Clear();
@@ -212,7 +213,7 @@ namespace DesktopAquarium
             }
         }
 
-        private void CreateNewFish(BaseSettings settingsToUse)
+        private void CreateNewFish(BaseFishSettings settingsToUse)
         {
             if (settingsToUse == null)
                 return;
@@ -230,7 +231,7 @@ namespace DesktopAquarium
             _newFish = null;
         }
 
-        private void OpenFishForm(BaseSettings settingsToUse)
+        private void OpenFishForm(BaseFishSettings settingsToUse)
         {
             BaseFish? frm = null;
 
@@ -268,7 +269,7 @@ namespace DesktopAquarium
             }
         }
 
-        public BaseSettings GetSettingsFromControls(BaseSettings settings, FlowLayoutPanel panel)
+        public BaseFishSettings GetSettingsFromControls(BaseFishSettings settings, FlowLayoutPanel panel)
         {
             foreach (Control ctrl in panel.Controls)
             {
@@ -366,7 +367,7 @@ namespace DesktopAquarium
             if (!int.TryParse(selectedFish.Tag?.ToString(), out int fishID))
                 fishID = -1;
 
-            foreach (BaseSettings fish in _settings.FishList)
+            foreach (BaseFishSettings fish in _settings.FishList)
             {
                 if (fish.FishID == fishID)
                 {
@@ -493,7 +494,7 @@ namespace DesktopAquarium
                 .ToList();
                 lvFishList.Items.Clear();
                 _fishImages.Images.Clear();
-                foreach (BaseSettings fish in orderedList)
+                foreach (BaseFishSettings fish in orderedList)
                 {
                     _currentFishID = Math.Max(_currentFishID, fish.FishID + 1);
                     AddFishToList(fish);
@@ -537,6 +538,20 @@ namespace DesktopAquarium
         {
             Application.Exit();
         }
+
+        private void btnMakeSeaweed_Click(object sender, EventArgs e)
+        {
+            var settings = new BasePlantSettings();
+            if (!decimal.TryParse(tbScale.Text, out decimal scale))
+                scale = 1;
+            settings.Scale = scale;
+
+            settings.Location = new Point(100, 100);
+            var s = new Seaweed(settings);
+
+            s.Show();
+        }
         #endregion
+
     }
 }

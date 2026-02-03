@@ -16,7 +16,7 @@ namespace DesktopAquarium.Fish
         private Point _dragForm;
         private Point _dragCursor;
 
-        private BaseSettings _settings;
+        private BaseFishSettings _settings;
         private ImageHelper _imageHelper;
         private MemoryStream? _memoryStream;
         private Random _rand;
@@ -89,7 +89,7 @@ namespace DesktopAquarium.Fish
         public List<byte[]> IdleLGifs { get; set; }
         public List<byte[]> IdleRGifs { get; set; }
 
-        public BaseFish(BaseSettings settings)
+        public BaseFish(BaseFishSettings settings)
         {
             InitializeComponent();
 

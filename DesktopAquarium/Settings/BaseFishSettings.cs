@@ -1,6 +1,6 @@
 namespace DesktopAquarium.Settings
 {
-    public class BaseSettings
+    public class BaseFishSettings
     {
         public int FishID { get; set; }
         public int FishMoveSpeed { get; set; }
@@ -14,7 +14,7 @@ namespace DesktopAquarium.Settings
         private const int DefaultMoveSpeed = 50;
         private const int DefaultIdleTimerInterval = 3000;
 
-        public BaseSettings()
+        public BaseFishSettings()
         {
             FishMoveSpeed = DefaultMoveSpeed;
             FishIdleTimeInMilliseconds = DefaultIdleTimerInterval;

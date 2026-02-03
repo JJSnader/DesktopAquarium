@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DesktopAquarium.Settings
 {
-    public class SubmarineSettings : BaseSettings
+    public class SubmarineSettings : BaseFishSettings
     {
     }
 }

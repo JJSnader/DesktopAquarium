@@ -9,10 +9,10 @@ namespace DesktopAquarium
 {
     public class SettingsChangedEventArgs : EventArgs
     {
-        public BaseSettings NewSettings { get; set; }
+        public BaseFishSettings NewSettings { get; set; }
         public int FishID { get; set; }
 
-        public SettingsChangedEventArgs(BaseSettings newSettings, int fishID)
+        public SettingsChangedEventArgs(BaseFishSettings newSettings, int fishID)
         {
             NewSettings = newSettings;
             FishID = fishID;

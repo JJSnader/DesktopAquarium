@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace DesktopAquarium.Settings
 {
-    public class AquariumSettings
+    public class BasePlantSettings
     {
-        public List<BaseFishSettings> FishList { get; set; }
+        public decimal Scale { get; set; }
 
-        public AquariumSettings()
+        public Point Location { get; set; }
+
+        public BasePlantSettings()
         {
-            FishList = [];
+            Scale = 1;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace DesktopAquarium.Settings
 {
-    public class JellyfishSettings : BaseSettings
+    public class JellyfishSettings : BaseFishSettings
     {
         public JellyfishSettings()
         {

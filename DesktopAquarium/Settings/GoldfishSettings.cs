@@ -1,6 +1,6 @@
 ﻿namespace DesktopAquarium.Settings
 {
-    public class GoldfishSettings : BaseSettings
+    public class GoldfishSettings : BaseFishSettings
     {
         public GoldfishSettings()
         {

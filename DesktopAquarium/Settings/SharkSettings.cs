@@ -1,6 +1,6 @@
 ﻿namespace DesktopAquarium.Settings
 {
-    public class SharkSettings : BaseSettings
+    public class SharkSettings : BaseFishSettings
     {
         public bool CursorChompEnabled { get; set; }
         public bool PlayChaseSound { get; set; }
