@@ -1,9 +1,9 @@
-using Newtonsoft.Json;
+using DesktopAquarium.Enums;
 using DesktopAquarium.Fish;
-using DesktopAquarium.Settings;
-using System.Reflection;
-using System.Windows.Forms;
 using DesktopAquarium.Plants;
+using DesktopAquarium.Settings;
+using Newtonsoft.Json;
+using System.Reflection;
 
 namespace DesktopAquarium
 {
@@ -172,6 +172,25 @@ namespace DesktopAquarium
                     };
                     panel.Controls.Add(checkBox);
                 }
+                else if (property.PropertyType == typeof(Scale))
+                {
+                    Label label = new Label
+                    {
+                        Text = AddSpacesBeforeCapitals(property.Name),
+                        AutoSize = true,
+                    };
+                    panel.Controls.Add(label);
+                    var scales = Enum.GetValues(typeof(Scale)).Cast<Scale>().ToList();
+                    ComboBox cb = new()
+                    {
+                        Name = property.Name,
+                        DataSource = scales,
+                    };
+
+                    panel.Controls.Add(cb);
+                    if (cb.DataSource != null && cb.Items.Count > 0)
+                        cb.SelectedIndex = (int)(property.GetValue(settings, null) ?? 0);
+                }
                 else if (property.PropertyType == typeof(Frequency))
                 {
                     Label label = new Label
@@ -301,6 +320,10 @@ namespace DesktopAquarium
                 {
                     var property = settings.GetType().GetProperty(comboBox.Name);
                     if (property != null && property.PropertyType == typeof(Frequency))
+                    {
+                        property.SetValue(settings, comboBox.SelectedIndex);
+                    }
+                    else if (property != null && property.PropertyType == typeof(Scale))
                     {
                         property.SetValue(settings, comboBox.SelectedIndex);
                     }
@@ -551,7 +574,62 @@ namespace DesktopAquarium
 
             s.Show();
         }
+
+        private void tcMain_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            var tabControl = (TabControl)sender;
+            var tabPage = tabControl.TabPages[e.Index];
+            var bounds = tabControl.GetTabRect(e.Index);
+            bool selected = e.Index == tabControl.SelectedIndex;
+
+            Color baseColor = Color.FromArgb(0, 79, 111);
+            Color backColor = selected
+                ? baseColor
+                : ControlPaint.Light(baseColor, 0.2f);
+
+            using var backBrush = new SolidBrush(backColor);
+            using var textBrush = new SolidBrush(Color.White);
+
+            e.Graphics.FillRectangle(backBrush, bounds);
+
+            TextRenderer.DrawText(
+                e.Graphics,
+                tabPage.Text,
+                tabControl.Font,
+                bounds,
+                Color.White,
+                TextFormatFlags.HorizontalCenter |
+                TextFormatFlags.VerticalCenter |
+                TextFormatFlags.SingleLine
+            );
+        }
         #endregion
 
+        private void btnFishTab_Click(object sender, EventArgs e)
+        {
+            if (tcMain.SelectedTab == tabPlants)
+            {
+                btnFishTab.BackColor = Color.FromArgb(255, 0, 105, 148);
+                btnPlantTab.BackColor = Color.FromArgb(255, 0, 79, 111);
+
+                btnFishTab.Location = new Point(btnFishTab.Location.X, btnFishTab.Location.Y - 3);
+                btnPlantTab.Location = new Point(btnPlantTab.Location.X, btnPlantTab.Location.Y + 3);
+                tcMain.SelectedTab = tabFish;
+            }
+        }
+
+        private void btnPlantTab_Click(object sender, EventArgs e)
+        {
+            if (tcMain.SelectedTab == tabFish)
+            {
+                btnFishTab.BackColor = Color.FromArgb(255, 0, 79, 111);
+                btnPlantTab.BackColor = Color.FromArgb(255, 0, 105, 148);
+
+                btnFishTab.Location = new Point(btnFishTab.Location.X, btnFishTab.Location.Y + 3);
+                btnPlantTab.Location = new Point(btnPlantTab.Location.X, btnPlantTab.Location.Y - 3);
+                tcMain.SelectedTab = tabPlants;
+            }
+
+        }
     }
 }

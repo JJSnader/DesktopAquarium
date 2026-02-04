@@ -30,7 +30,7 @@ namespace DesktopAquarium.Fish
             IdleRGifs = [];
             Icon = ImageHelper.LoadIconFromBytes(Properties.Resources.GoldfishIcon);
 
-            (var width, var height) = ImageHelper.GetImageDimensions(Properties.Resources.GoldfishDefaultIdleL);
+            (int width, int height) = ImageHelper.GetImageDimensions(Properties.Resources.GoldfishDefaultIdleL);
             InitializeForm(width, height);
         }
     }

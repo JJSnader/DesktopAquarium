@@ -1,15 +1,6 @@
-﻿using DesktopAquarium.Settings;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+﻿using DesktopAquarium.Enums;
+using DesktopAquarium.Settings;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace DesktopAquarium.Fish
 {

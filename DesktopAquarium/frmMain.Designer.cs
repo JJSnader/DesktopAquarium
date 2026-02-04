@@ -51,12 +51,20 @@
             btnQuit = new ToolStripMenuItem();
             btnIdentifyFish = new Button();
             llExit = new LinkLabel();
-            btnMakeSeaweed = new Button();
-            label6 = new Label();
+            tcMain = new TabControl();
+            tabFish = new TabPage();
+            tabPlants = new TabPage();
+            btnFishTab = new Button();
+            btnPlantTab = new Button();
             tbScale = new TextBox();
+            label6 = new Label();
+            btnMakeSeaweed = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             contextMenuStrip1.SuspendLayout();
+            tcMain.SuspendLayout();
+            tabFish.SuspendLayout();
+            tabPlants.SuspendLayout();
             SuspendLayout();
             // 
             // lvFishList
@@ -65,7 +73,7 @@
             lvFishList.BorderStyle = BorderStyle.None;
             lvFishList.ForeColor = SystemColors.Window;
             lvFishList.FullRowSelect = true;
-            lvFishList.Location = new Point(19, 132);
+            lvFishList.Location = new Point(0, 30);
             lvFishList.Margin = new Padding(5, 6, 5, 6);
             lvFishList.MultiSelect = false;
             lvFishList.Name = "lvFishList";
@@ -80,7 +88,7 @@
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label1.Font = new Font("Segoe UI", 30F);
             label1.ForeColor = Color.WhiteSmoke;
-            label1.Location = new Point(19, 17);
+            label1.Location = new Point(19, 10);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
             label1.Size = new Size(1221, 82);
@@ -93,7 +101,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 15F);
             label2.ForeColor = Color.WhiteSmoke;
-            label2.Location = new Point(19, 102);
+            label2.Location = new Point(0, 0);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
             label2.Size = new Size(80, 28);
@@ -105,7 +113,7 @@
             llRemoveFish.AutoSize = true;
             llRemoveFish.ForeColor = Color.WhiteSmoke;
             llRemoveFish.LinkColor = Color.WhiteSmoke;
-            llRemoveFish.Location = new Point(239, 102);
+            llRemoveFish.Location = new Point(220, 0);
             llRemoveFish.Name = "llRemoveFish";
             llRemoveFish.Size = new Size(78, 28);
             llRemoveFish.TabIndex = 3;
@@ -123,7 +131,7 @@
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(cmbFishType);
             groupBox1.ForeColor = Color.WhiteSmoke;
-            groupBox1.Location = new Point(323, 102);
+            groupBox1.Location = new Point(304, 0);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(917, 344);
             groupBox1.TabIndex = 4;
@@ -191,7 +199,7 @@
             groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(flpSelectedSettings);
             groupBox2.ForeColor = Color.White;
-            groupBox2.Location = new Point(323, 452);
+            groupBox2.Location = new Point(304, 350);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(917, 365);
             groupBox2.TabIndex = 5;
@@ -236,7 +244,7 @@
             llCredits.AutoSize = true;
             llCredits.Font = new Font("Segoe UI", 12F);
             llCredits.LinkColor = Color.WhiteSmoke;
-            llCredits.Location = new Point(1181, 820);
+            llCredits.Location = new Point(12, 7);
             llCredits.Name = "llCredits";
             llCredits.Size = new Size(59, 21);
             llCredits.TabIndex = 0;
@@ -300,36 +308,107 @@
             llExit.Text = "Exit Application";
             llExit.LinkClicked += llExit_LinkClicked;
             // 
+            // tcMain
+            // 
+            tcMain.Appearance = TabAppearance.FlatButtons;
+            tcMain.Controls.Add(tabFish);
+            tcMain.Controls.Add(tabPlants);
+            tcMain.DrawMode = TabDrawMode.OwnerDrawFixed;
+            tcMain.ItemSize = new Size(0, 1);
+            tcMain.Location = new Point(19, 109);
+            tcMain.Name = "tcMain";
+            tcMain.SelectedIndex = 0;
+            tcMain.Size = new Size(1228, 727);
+            tcMain.SizeMode = TabSizeMode.Fixed;
+            tcMain.TabIndex = 9;
+            tcMain.DrawItem += tcMain_DrawItem;
+            // 
+            // tabFish
+            // 
+            tabFish.BackColor = Color.FromArgb(0, 105, 148);
+            tabFish.Controls.Add(label2);
+            tabFish.Controls.Add(lvFishList);
+            tabFish.Controls.Add(llRemoveFish);
+            tabFish.Controls.Add(groupBox1);
+            tabFish.Controls.Add(groupBox2);
+            tabFish.Location = new Point(4, 5);
+            tabFish.Name = "tabFish";
+            tabFish.Padding = new Padding(3);
+            tabFish.Size = new Size(1220, 718);
+            tabFish.TabIndex = 0;
+            tabFish.Text = "Fish";
+            // 
+            // tabPlants
+            // 
+            tabPlants.BackColor = Color.FromArgb(0, 105, 148);
+            tabPlants.Controls.Add(tbScale);
+            tabPlants.Controls.Add(label6);
+            tabPlants.Controls.Add(btnMakeSeaweed);
+            tabPlants.Location = new Point(4, 5);
+            tabPlants.Name = "tabPlants";
+            tabPlants.Padding = new Padding(3);
+            tabPlants.Size = new Size(1220, 718);
+            tabPlants.TabIndex = 1;
+            tabPlants.Text = "Plants";
+            // 
+            // btnFishTab
+            // 
+            btnFishTab.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnFishTab.BackColor = Color.FromArgb(0, 105, 148);
+            btnFishTab.FlatStyle = FlatStyle.Flat;
+            btnFishTab.ForeColor = Color.White;
+            btnFishTab.Location = new Point(19, 70);
+            btnFishTab.Name = "btnFishTab";
+            btnFishTab.Size = new Size(125, 40);
+            btnFishTab.TabIndex = 10;
+            btnFishTab.Text = "Fish";
+            btnFishTab.UseVisualStyleBackColor = false;
+            btnFishTab.Click += btnFishTab_Click;
+            // 
+            // btnPlantTab
+            // 
+            btnPlantTab.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnPlantTab.BackColor = Color.FromArgb(0, 79, 111);
+            btnPlantTab.FlatStyle = FlatStyle.Flat;
+            btnPlantTab.ForeColor = Color.White;
+            btnPlantTab.Location = new Point(145, 73);
+            btnPlantTab.Name = "btnPlantTab";
+            btnPlantTab.Size = new Size(125, 40);
+            btnPlantTab.TabIndex = 11;
+            btnPlantTab.Text = "Plants";
+            btnPlantTab.UseVisualStyleBackColor = false;
+            btnPlantTab.Click += btnPlantTab_Click;
+            // 
+            // tbScale
+            // 
+            tbScale.Location = new Point(69, 52);
+            tbScale.Name = "tbScale";
+            tbScale.Size = new Size(140, 34);
+            tbScale.TabIndex = 11;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(6, 55);
+            label6.Name = "label6";
+            label6.Size = new Size(57, 28);
+            label6.TabIndex = 9;
+            label6.Text = "Scale";
+            // 
             // btnMakeSeaweed
             // 
             btnMakeSeaweed.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnMakeSeaweed.BackColor = Color.Teal;
             btnMakeSeaweed.FlatStyle = FlatStyle.Flat;
             btnMakeSeaweed.ForeColor = Color.White;
-            btnMakeSeaweed.Location = new Point(828, 29);
+            btnMakeSeaweed.Location = new Point(6, 6);
             btnMakeSeaweed.Name = "btnMakeSeaweed";
             btnMakeSeaweed.Size = new Size(203, 40);
-            btnMakeSeaweed.TabIndex = 7;
+            btnMakeSeaweed.TabIndex = 10;
             btnMakeSeaweed.Text = "Create Seaweed";
             btnMakeSeaweed.UseVisualStyleBackColor = false;
             btnMakeSeaweed.Click += btnMakeSeaweed_Click;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(828, 78);
-            label6.Name = "label6";
-            label6.Size = new Size(57, 28);
-            label6.TabIndex = 5;
-            label6.Text = "Scale";
-            // 
-            // tbScale
-            // 
-            tbScale.Location = new Point(891, 75);
-            tbScale.Name = "tbScale";
-            tbScale.Size = new Size(140, 34);
-            tbScale.TabIndex = 8;
             // 
             // frmMain
             // 
@@ -337,18 +416,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 105, 148);
             ClientSize = new Size(1259, 848);
-            Controls.Add(tbScale);
-            Controls.Add(label6);
-            Controls.Add(btnMakeSeaweed);
+            Controls.Add(tcMain);
             Controls.Add(llExit);
             Controls.Add(btnIdentifyFish);
             Controls.Add(llCredits);
-            Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
-            Controls.Add(llRemoveFish);
-            Controls.Add(label2);
+            Controls.Add(btnPlantTab);
+            Controls.Add(btnFishTab);
             Controls.Add(label1);
-            Controls.Add(lvFishList);
             Font = new Font("Segoe UI", 15F);
             ForeColor = Color.Black;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -360,6 +434,11 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             contextMenuStrip1.ResumeLayout(false);
+            tcMain.ResumeLayout(false);
+            tabFish.ResumeLayout(false);
+            tabFish.PerformLayout();
+            tabPlants.ResumeLayout(false);
+            tabPlants.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -387,8 +466,13 @@
         private ToolStripMenuItem btnQuit;
         private Button btnIdentifyFish;
         private LinkLabel llExit;
-        private Button btnMakeSeaweed;
-        private Label label6;
+        private TabControl tcMain;
+        private TabPage tabFish;
+        private TabPage tabPlants;
+        private Button btnFishTab;
+        private Button btnPlantTab;
         private TextBox tbScale;
+        private Label label6;
+        private Button btnMakeSeaweed;
     }
 }

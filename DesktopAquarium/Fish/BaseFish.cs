@@ -1,5 +1,4 @@
-using System.Drawing.Imaging;
-
+using DesktopAquarium.Enums;
 using DesktopAquarium.Settings;
 
 namespace DesktopAquarium.Fish
@@ -77,6 +76,12 @@ namespace DesktopAquarium.Fish
             get => new(Left + Width / 2, Top + Height / 2);
         }
 
+        public decimal ScaleTiny { get; set; } = 0.2m;
+        public decimal ScaleSmall { get; set; } = 0.6m;
+        public decimal ScaleStandard { get; set; } = 1;
+        public decimal ScaleLarge { get; set; } = 2;
+        public decimal ScaleGiant { get; set; } = 3;
+
         public byte[] SwimLGif { get; set; }
         public byte[] SwimRGif { get; set; }
 
@@ -153,11 +158,8 @@ namespace DesktopAquarium.Fish
         /// <param name="height">The height of the form.</param>
         public void InitializeForm(int width, int height)
         {
-            Width = width;
-            Height = height;
-            lbFishName.Location = new Point((Width / 2) - (lbFishName.Width / 2), (Height / 2) - (lbFishName.Height / 2));
-            pbMain.Width = width;
-            pbMain.Height = height;
+            SetDimensions();
+
             _isFacingLeft = true;
             if ( _settings.FollowCursor )
             {
@@ -167,6 +169,39 @@ namespace DesktopAquarium.Fish
             {
                 SetIdleImage(false);
             }
+        }
+
+        private void SetDimensions()
+        {
+            decimal scale;
+            switch (_settings.Scale)
+            {
+                case Enums.Scale.Tiny:
+                    scale = ScaleTiny;
+                    break;
+                case Enums.Scale.Small:
+                    scale = ScaleSmall;
+                    break;
+                case Enums.Scale.Large:
+                    scale = ScaleLarge;
+                    break;
+                case Enums.Scale.Giant:
+                    scale = ScaleGiant;
+                    break;
+                case Enums.Scale.Standard:
+                default:
+                    scale = 1m;
+                    break;
+            }
+
+            (int width, int height) = ImageHelper.GetImageDimensions(DefaultIdleLGif);
+
+            Width = (int)(width * scale);
+            Height = (int)(height * scale);
+            pbMain.Width = (int)(width * scale);
+            pbMain.Height = (int)(height * scale);
+
+            lbFishName.Location = new Point((Width / 2) - (lbFishName.Width / 2), (Height / 2) - (lbFishName.Height / 2));
         }
 
         private Rectangle GetDestinationScreen()
@@ -288,8 +323,14 @@ namespace DesktopAquarium.Fish
                 screen = GetDestinationScreen();
             do
             {
-                newX = _rand.Next(screen.Left, screen.Right - Width);
-                newY = _rand.Next(screen.Top, screen.Bottom - Height);
+                if (screen.Right - Width < screen.Left)
+                    newX = _rand.Next(screen.Right - Width, screen.Left);
+                else
+                    newX = _rand.Next(screen.Left, screen.Right - Width);
+                if (screen.Bottom - Height < screen.Top)
+                    newY = _rand.Next(screen.Bottom - Height, screen.Top);
+                else
+                    newY = _rand.Next(screen.Top, screen.Bottom - Height);
             }
             while ((Math.Abs(newX - Location.X) < 100 || Math.Abs(newY - Location.Y) < 100)
             && (Math.Abs(newX - Location.X) > 200 || Math.Abs(newY - Location.Y) > 200));
@@ -412,6 +453,7 @@ namespace DesktopAquarium.Fish
             _settings = e.NewSettings;
             lbFishName.Text = _settings.Name ?? "[No name]";
             LoadSettings();
+            SetDimensions();
         }
 
         public virtual void MouseDown_Raised(object? sender, MouseEventArgs e)

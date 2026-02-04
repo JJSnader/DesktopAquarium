@@ -1,3 +1,5 @@
+using DesktopAquarium.Enums;
+
 namespace DesktopAquarium.Settings
 {
     public class BaseFishSettings
@@ -10,6 +12,8 @@ namespace DesktopAquarium.Settings
         public bool PrimaryScreenOnly { get; set; }
         public FishType FishType { get; set; }
         public string? Name { get; set; }
+
+        public Scale Scale { get; set; } = Scale.Standard;
 
         private const int DefaultMoveSpeed = 50;
         private const int DefaultIdleTimerInterval = 3000;
