@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesktopAquarium.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,19 @@ namespace DesktopAquarium.Settings
 {
     public class BasePlantSettings
     {
-        public decimal Scale { get; set; }
+        public int PlantID { get; set; }
+
+        public bool TopMost { get; set; } = false;
+
+        public PlantType PlantType { get; set; }
+
+        public Scale Scale { get; set; }
 
         public Point Location { get; set; }
 
         public BasePlantSettings()
         {
-            Scale = 1;
+            Scale = Scale.Standard;
         }
     }
 }

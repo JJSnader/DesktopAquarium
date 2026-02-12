@@ -10,20 +10,29 @@ namespace DesktopAquarium
     public partial class frmMain : Form
     {
         private AquariumSettings _settings;
-        private BaseFishSettings? _newFish;
-        private BaseFishSettings? _selectedFish;
         private ImageHelper _imageHelper;
-        private ImageList _fishImages;
         private JsonSerializerSettings _serializerSettings;
         private NameHelper _nameHelper;
 
         private int _currentFishID;
+        private BaseFishSettings? _newFish;
+        private BaseFishSettings? _selectedFish;
+        private ImageList _fishImages;
+
+        private int _currentPlantID;
+        private BasePlantSettings? _newPlant;
+        private BasePlantSettings? _selectedPlant;
+        private ImageList _plantImages;
 
         private const string SettingsFilePath = @"C:\ProgramData\AquariumSettings.json";
 
-        public event EventHandler<EventArgs> IdentifyFish;
+        public event EventHandler<EventArgs> Identify;
+
         public event EventHandler<KillFishEventArgs> KillFish;
-        public event EventHandler<SettingsChangedEventArgs> SettingsChanged;
+        public event EventHandler<FishSettingsChangedEventArgs> FishSettingsChanged;
+
+        public event EventHandler<KillPlantEventArgs> KillPlant;
+        public event EventHandler<PlantSettingsChangedEventArgs> PlantSettingsChanged;
 
         public frmMain()
         {
@@ -31,21 +40,35 @@ namespace DesktopAquarium
 
             _imageHelper = new ImageHelper();
             _nameHelper = new NameHelper();
+            _serializerSettings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto };
+
             _currentFishID = 0;
 
             lvFishList.Columns.Add(" ", 40, HorizontalAlignment.Left);
             lvFishList.Columns.Add("Fish Name", -2, HorizontalAlignment.Left);
 
-            _fishImages = new ImageList();
+            _fishImages = new();
             _fishImages.ImageSize = new Size(32, 32);
-
-            _serializerSettings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto };
 
             var fishTypes = Enum.GetValues(typeof(FishType)).Cast<FishType>().ToList();
             fishTypes.Insert(0, (FishType)(-1));
             cmbFishType.DataSource = fishTypes;
             cmbFishType.SelectedIndex = -1;
             cmbFishType.Format += cmbFishType_Format;
+
+            _currentPlantID = 0;
+
+            lvPlantList.Columns.Add(" ", 40, HorizontalAlignment.Left);
+            lvPlantList.Columns.Add("Plant ID", -2, HorizontalAlignment.Left);
+
+            _plantImages = new();
+            _plantImages.ImageSize = new Size(32, 32);
+
+            var plantTypes = Enum.GetValues(typeof(PlantType)).Cast<PlantType>().ToList();
+            plantTypes.Insert(0, (PlantType)(-1));
+            cmbPlantType.DataSource = plantTypes;
+            cmbPlantType.SelectedIndex = -1;
+            cmbPlantType.Format += cmbPlantType_Format;
 
             if (File.Exists(SettingsFilePath))
             {
@@ -54,15 +77,33 @@ namespace DesktopAquarium
                 if (settings != null && settings.FishList.Count > 0)
                 {
                     _settings = settings;
-                    var orderedList = settings.FishList
-                        .OrderBy(bs => bs.FishType)
-                        .ThenBy(bs => bs.Name)
-                        .ToList();
-                    foreach (BaseFishSettings fish in orderedList)
+
+                    if (settings.FishList.Count > 0)
                     {
-                        _currentFishID = Math.Max(_currentFishID, fish.FishID + 1);
-                        AddFishToList(fish);
-                        OpenFishForm(fish);
+                        var orderedList = settings.FishList
+                            .OrderBy(bs => bs.FishType)
+                            .ThenBy(bs => bs.Name)
+                            .ToList();
+                        foreach (BaseFishSettings fish in orderedList)
+                        {
+                            _currentFishID = Math.Max(_currentFishID, fish.FishID + 1);
+                            AddFishToList(fish);
+                            OpenFishForm(fish);
+                        }
+                    }
+
+                    if (settings.PlantList.Count > 0)
+                    {
+                        var orderedList = settings.PlantList
+                            .OrderBy(bs => bs.PlantType)
+                            .ThenBy(bs => bs.PlantID)
+                            .ToList();
+                        foreach (BasePlantSettings plant in orderedList)
+                        {
+                            _currentPlantID = Math.Max(_currentPlantID, plant.PlantID + 1);
+                            AddPlantToList(plant);
+                            OpenPlantForm(plant);
+                        }
                     }
                 }
                 else
@@ -73,6 +114,8 @@ namespace DesktopAquarium
 
             FormClosing += frmMain_FormClosing;
         }
+
+        #region Fish Code
 
         private void AddFishToList(BaseFishSettings fish)
         {
@@ -282,8 +325,8 @@ namespace DesktopAquarium
             if (frm is not null)
             {
                 KillFish += frm.KillFish_Raised;
-                SettingsChanged += frm.SettingsChanged_Raised;
-                IdentifyFish += frm.IdentifyFish_Raised;
+                FishSettingsChanged += frm.SettingsChanged_Raised;
+                Identify += frm.IdentifyFish_Raised;
                 frm.Show();
             }
         }
@@ -333,6 +376,219 @@ namespace DesktopAquarium
             return settings;
         }
 
+        #endregion
+        #region Plant Code 
+
+        private void AddPlantToList(BasePlantSettings plant)
+        {
+            if (plant == null)
+                return;
+
+            _plantImages.Images.Add(plant.PlantID.ToString(), GetIconForPlant(plant.PlantType));
+
+            lvPlantList.SmallImageList = _plantImages;
+            var newItem = new ListViewItem(plant.PlantID.ToString())
+            {
+                Text = string.Empty,
+                Tag = plant.PlantID,
+                ImageKey = plant.PlantID.ToString()
+            };
+            newItem.SubItems.Add(plant.PlantID.ToString());
+            lvPlantList.Items.Add(newItem);
+        }
+
+        private Image GetIconForPlant(PlantType plant)
+        {
+            switch (plant)
+            {
+                case PlantType.Seaweed:
+                    return ImageHelper.LoadImageFromBytes(Properties.Resources.SeaweedIcon);
+                default:
+                    return ImageHelper.LoadImageFromBytes(Properties.Resources.NullIcon);
+            }
+        }
+
+        private void CreateControlsForPlant(BasePlantSettings settings, FlowLayoutPanel panel)
+        {
+            Type objType = settings.GetType();
+            panel.Controls.Clear();
+
+            foreach (PropertyInfo property in objType.GetProperties())
+            {
+                if (property.Name == "PlantID" || property.Name == "Location")
+                    continue;
+
+                if (property.PropertyType == typeof(int))
+                {
+                    Label label = new Label
+                    {
+                        Text = AddSpacesBeforeCapitals(property.Name),
+                        AutoSize = true,
+                    };
+                    panel.Controls.Add(label);
+                    NumericUpDown numericUpDown = new NumericUpDown
+                    {
+                        Name = property.Name,
+                        Minimum = 0,
+                        Maximum = 10000,
+                        Value = (int?)property.GetValue(settings, null) ?? 0
+                    };
+                    panel.Controls.Add(numericUpDown);
+                }
+                else if (property.PropertyType == typeof(bool))
+                {
+                    CheckBox checkBox = new()
+                    {
+                        Name = property.Name,
+                        Text = AddSpacesBeforeCapitals(property.Name),
+                        AutoSize = true,
+                        Checked = (bool?)property.GetValue(settings, null) ?? false
+                    };
+                    panel.Controls.Add(checkBox);
+                }
+                else if (property.PropertyType == typeof(Scale))
+                {
+                    Label label = new Label
+                    {
+                        Text = AddSpacesBeforeCapitals(property.Name),
+                        AutoSize = true,
+                    };
+                    panel.Controls.Add(label);
+                    var scales = Enum.GetValues(typeof(Scale)).Cast<Scale>().ToList();
+                    ComboBox cb = new()
+                    {
+                        Name = property.Name,
+                        DataSource = scales,
+                    };
+
+                    panel.Controls.Add(cb);
+                    if (cb.DataSource != null && cb.Items.Count > 0)
+                        cb.SelectedIndex = (int)(property.GetValue(settings, null) ?? 0);
+                }
+                else if (property.PropertyType == typeof(Frequency))
+                {
+                    Label label = new Label
+                    {
+                        Text = AddSpacesBeforeCapitals(property.Name),
+                        AutoSize = true,
+                    };
+                    panel.Controls.Add(label);
+                    var frequencies = Enum.GetValues(typeof(Frequency)).Cast<Frequency>().ToList();
+                    ComboBox cb = new()
+                    {
+                        Name = property.Name,
+                        DataSource = frequencies,
+                    };
+
+                    panel.Controls.Add(cb);
+                    if (cb.DataSource != null && cb.Items.Count > 0)
+                        cb.SelectedIndex = (int)(property.GetValue(settings, null) ?? 0);
+                }
+                else if (property.PropertyType != typeof(PlantType))
+                {
+                    Label label = new Label
+                    {
+                        Text = AddSpacesBeforeCapitals(property.Name),
+                        AutoSize = true,
+                    };
+                    panel.Controls.Add(label);
+                    TextBox textBox = new()
+                    {
+                        Name = property.Name,
+                        Text = property.GetValue(settings, null)?.ToString(),
+                    };
+                    if (property.Name == "Name" && textBox.Text == string.Empty)
+                    {
+                        textBox.Text = _nameHelper.GetRandomName();
+                    }
+                    panel.Controls.Add(textBox);
+                }
+            }
+        }
+
+        private void CreateNewPlant(BasePlantSettings settingsToUse)
+        {
+            if (settingsToUse == null)
+                return;
+
+            settingsToUse = GetSettingsFromControls(settingsToUse, flpNewPlantSettings);
+
+            AddPlantToList(settingsToUse);
+
+            _settings.PlantList.Add(settingsToUse);
+
+            SaveSettings();
+
+            OpenPlantForm(settingsToUse);
+
+            _newPlant = null;
+        }
+
+        private void OpenPlantForm(BasePlantSettings settingsToUse)
+        {
+            BasePlant? frm = null;
+
+            if (settingsToUse.GetType() == typeof(SeaweedSettings))
+            {
+                frm = new Seaweed((SeaweedSettings)settingsToUse);
+            }
+
+            if (frm is not null)
+            {
+                KillPlant += frm.KillPlant_Raised;
+                PlantSettingsChanged += frm.SettingsChanged_Raised;
+                Identify += frm.IdentifyPlant_Raised;
+                frm.LocationChanged += LocationChanged_Raised;
+                frm.Show();
+            }
+        }
+
+        public BasePlantSettings GetSettingsFromControls(BasePlantSettings settings, FlowLayoutPanel panel)
+        {
+            foreach (Control ctrl in panel.Controls)
+            {
+                if (ctrl is NumericUpDown numericUpDown)
+                {
+                    var property = settings.GetType().GetProperty(numericUpDown.Name);
+                    if (property != null && property.PropertyType == typeof(int))
+                    {
+                        property.SetValue(settings, (int)numericUpDown.Value);
+                    }
+                }
+                else if (ctrl is CheckBox checkBox)
+                {
+                    var property = settings.GetType().GetProperty(checkBox.Name);
+                    if (property != null && property.PropertyType == typeof(bool))
+                    {
+                        property.SetValue(settings, checkBox.Checked);
+                    }
+                }
+                else if (ctrl is TextBox textBox)
+                {
+                    var property = settings.GetType().GetProperty(textBox.Name);
+                    if (property != null && property.PropertyType == typeof(string))
+                    {
+                        property.SetValue(settings, textBox.Text);
+                    }
+                }
+                else if (ctrl is ComboBox comboBox)
+                {
+                    var property = settings.GetType().GetProperty(comboBox.Name);
+                    if (property != null && property.PropertyType == typeof(Frequency))
+                    {
+                        property.SetValue(settings, comboBox.SelectedIndex);
+                    }
+                    else if (property != null && property.PropertyType == typeof(Scale))
+                    {
+                        property.SetValue(settings, comboBox.SelectedIndex);
+                    }
+                }
+            }
+
+            return settings;
+        }
+        #endregion
+
         private void SaveSettings()
         {
             var settingsString = JsonConvert.SerializeObject(_settings, _serializerSettings);
@@ -355,6 +611,8 @@ namespace DesktopAquarium
                 notifyIcon1.Dispose();
             }
         }
+
+        #region Fish Tab
 
         private void llRemoveFish_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -523,13 +781,183 @@ namespace DesktopAquarium
                     AddFishToList(fish);
                 }
             }
-            SettingsChanged?.Invoke(this, new SettingsChangedEventArgs(_selectedFish, _selectedFish.FishID));
+            FishSettingsChanged?.Invoke(this, new FishSettingsChangedEventArgs(_selectedFish, _selectedFish.FishID));
             SaveSettings();
             _selectedFish = null;
             flpSelectedSettings.Controls.Clear();
             lvFishList.SelectedItems.Clear();
             Application.DoEvents();
         }
+
+        #endregion
+        #region Plant Tab 
+
+        private void llRemovePlant_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (lvPlantList.SelectedItems.Count == 0)
+                return;
+
+            if (!int.TryParse(lvPlantList.SelectedItems[0].Tag?.ToString(), out int PlantID))
+                PlantID = -1;
+
+            KillPlant?.Invoke(this, new KillPlantEventArgs(PlantID));
+
+            lvPlantList.Items.Remove(lvPlantList.SelectedItems[0]);
+
+            for (int i = 0; i < _settings.PlantList.Count; i++)
+            {
+                if (_settings.PlantList[i].PlantID == PlantID)
+                {
+                    _settings.PlantList.RemoveAt(i);
+                    break;
+                }
+            }
+        }
+
+        private void lvPlantList_ItemSelectionChanged(object? sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            if (lvPlantList.SelectedItems.Count == 0)
+                return;
+
+            var selectedPlant = e.Item;
+            if (selectedPlant == null)
+                return;
+
+            if (!int.TryParse(selectedPlant.Tag?.ToString(), out int PlantID))
+                PlantID = -1;
+
+            foreach (BasePlantSettings Plant in _settings.PlantList)
+            {
+                if (Plant.PlantID == PlantID)
+                {
+                    CreateControlsForPlant(Plant, flpSelectedPlantSettings);
+                    _selectedPlant = Plant;
+                    break;
+                }
+            }
+        }
+
+        private void cmbPlantType_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            if (_newPlant != null)
+            {
+                if (MessageBox.Show("This new plant has not been saved. Do you want to save your changes?", "Unsaved Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    CreateNewPlant(_newPlant);
+                }
+                else
+                {
+                    _newPlant = null;
+                    flpNewPlantSettings.Controls.Clear();
+                }
+            }
+            PlantType? type = cmbPlantType.SelectedItem as PlantType?;
+            if (type == null)
+                return;
+
+            switch (type)
+            {
+                case PlantType.Seaweed:
+                    _newPlant = new SeaweedSettings();
+                    break;
+                default:
+                    return;
+            }
+
+            _currentPlantID++;
+            _newPlant.PlantID = _currentPlantID;
+            _newPlant.PlantType = (PlantType)type;
+            CreateControlsForPlant(_newPlant, flpNewPlantSettings);
+        }
+
+        private void cmbPlantType_Format(object? sender, ListControlConvertEventArgs e)
+        {
+            if (e.ListItem != null && (PlantType)e.ListItem == (PlantType)(-1))
+            {
+                e.Value = "No Option Selected";
+            }
+            else
+            {
+                e.Value = e.ListItem?.ToString(); // Display the enum value as the default
+            }
+        }
+
+        private void btnCreatePlant_Click(object sender, EventArgs e)
+        {
+            PlantType? type = cmbPlantType.SelectedItem as PlantType?;
+            if (type == null)
+                return;
+
+            if (type == (PlantType)(-1) || _newPlant == null)
+            {
+                MessageBox.Show("There is no new Plant loaded.");
+                return;
+            }
+
+            CreateNewPlant(_newPlant);
+            flpNewPlantSettings.Controls.Clear();
+        }
+
+        private void btnSavePlant_Click(object sender, EventArgs e)
+        {
+            if (flpSelectedPlantSettings.Controls.Count == 0 || _selectedPlant == null)
+            {
+                MessageBox.Show("No plant is selected.");
+                return;
+            }
+
+            _selectedPlant = GetSettingsFromControls(_selectedPlant, flpSelectedPlantSettings);
+
+            for (int i = 0; i < _settings.PlantList.Count; ++i)
+            {
+                if (_settings.PlantList[i].PlantID == _selectedPlant.PlantID)
+                {
+                    _settings.PlantList[i] = _selectedPlant;
+                    break;
+                }
+            }
+
+            // change Plant name in list if it changed
+            for (int i = 0; i < lvPlantList.Items.Count; ++i)
+            {
+                if (((int?)lvPlantList.Items[i].Tag ?? 0) == _selectedPlant.PlantID)
+                {
+                    if (_selectedPlant.PlantID > 0)
+                    {
+                        lvPlantList.Items[i].SubItems.Clear();
+                        lvPlantList.Items[i].SubItems.Add(_selectedPlant.PlantID.ToString());
+                    }
+
+                    break;
+                }
+
+                var orderedList = _settings.PlantList
+                .OrderBy(bs => bs.PlantType)
+                .ThenBy(bs => bs.PlantID)
+                .ToList();
+                lvPlantList.Items.Clear();
+                _plantImages.Images.Clear();
+                foreach (BasePlantSettings Plant in orderedList)
+                {
+                    _currentPlantID = Math.Max(_currentPlantID, Plant.PlantID + 1);
+                    AddPlantToList(Plant);
+                }
+            }
+
+            PlantSettingsChanged?.Invoke(this, new PlantSettingsChangedEventArgs(_selectedPlant, _selectedPlant.PlantID));
+            SaveSettings();
+            _selectedPlant = null;
+            flpSelectedPlantSettings.Controls.Clear();
+            lvPlantList.SelectedItems.Clear();
+            Application.DoEvents();
+        }
+
+        private void LocationChanged_Raised(object? sender, int plantID)
+        {
+            SaveSettings();
+        }
+
+        #endregion
 
         private void llCredits_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -554,25 +982,12 @@ namespace DesktopAquarium
 
         private void btnIdentifyFish_Click(object sender, EventArgs e)
         {
-            IdentifyFish?.Invoke(this, e);
+            Identify?.Invoke(this, e);
         }
 
         private void llExit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Application.Exit();
-        }
-
-        private void btnMakeSeaweed_Click(object sender, EventArgs e)
-        {
-            var settings = new BasePlantSettings();
-            if (!decimal.TryParse(tbScale.Text, out decimal scale))
-                scale = 1;
-            settings.Scale = scale;
-
-            settings.Location = new Point(100, 100);
-            var s = new Seaweed(settings);
-
-            s.Show();
         }
 
         private void tcMain_DrawItem(object sender, DrawItemEventArgs e)
@@ -603,7 +1018,6 @@ namespace DesktopAquarium
                 TextFormatFlags.SingleLine
             );
         }
-        #endregion
 
         private void btnFishTab_Click(object sender, EventArgs e)
         {
@@ -631,5 +1045,7 @@ namespace DesktopAquarium
             }
 
         }
+
+        #endregion
     }
 }

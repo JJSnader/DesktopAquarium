@@ -445,7 +445,7 @@ namespace DesktopAquarium.Fish
             Dispose();
         }
 
-        public virtual void SettingsChanged_Raised(object? sender, SettingsChangedEventArgs e)
+        public virtual void SettingsChanged_Raised(object? sender, FishSettingsChangedEventArgs e)
         {
             if (e.FishID != _settings.FishID)
                 return;

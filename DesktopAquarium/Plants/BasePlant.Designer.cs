@@ -32,6 +32,7 @@
             pbMain = new PictureBox();
             contextMenuStrip1 = new ContextMenuStrip(components);
             exitToolStripMenuItem = new ToolStripMenuItem();
+            lbPlantName = new Label();
             ((System.ComponentModel.ISupportInitialize)pbMain).BeginInit();
             contextMenuStrip1.SuspendLayout();
             SuspendLayout();
@@ -60,11 +61,25 @@
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += OnExit;
             // 
+            // lbPlantName
+            // 
+            lbPlantName.AutoSize = true;
+            lbPlantName.BackColor = Color.White;
+            lbPlantName.Font = new Font("Segoe UI", 15F);
+            lbPlantName.ForeColor = Color.Black;
+            lbPlantName.Location = new Point(45, 86);
+            lbPlantName.Name = "lbPlantName";
+            lbPlantName.Size = new Size(108, 28);
+            lbPlantName.TabIndex = 2;
+            lbPlantName.Text = "PlantName";
+            lbPlantName.Visible = false;
+            // 
             // BasePlant
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(200, 200);
+            Controls.Add(lbPlantName);
             Controls.Add(pbMain);
             FormBorderStyle = FormBorderStyle.None;
             Name = "BasePlant";
@@ -74,6 +89,7 @@
             ((System.ComponentModel.ISupportInitialize)pbMain).EndInit();
             contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -81,5 +97,6 @@
         private PictureBox pbMain;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem exitToolStripMenuItem;
+        private Label lbPlantName;
     }
 }

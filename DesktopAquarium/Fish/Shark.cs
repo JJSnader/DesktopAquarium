@@ -47,7 +47,7 @@ namespace DesktopAquarium.Fish
             base.KillFish_Raised(sender, e);
         }
 
-        public override void SettingsChanged_Raised(object? sender, SettingsChangedEventArgs e)
+        public override void SettingsChanged_Raised(object? sender, FishSettingsChangedEventArgs e)
         {
             if (e.FishID != _settings.FishID)
                 return;

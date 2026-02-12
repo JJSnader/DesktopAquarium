@@ -1,6 +1,6 @@
 ﻿namespace DesktopAquarium.Enums
 {
-    internal enum PlantType
+    public enum PlantType
     {
         Seaweed
     }

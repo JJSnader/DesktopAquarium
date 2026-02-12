@@ -54,17 +54,31 @@
             tcMain = new TabControl();
             tabFish = new TabPage();
             tabPlants = new TabPage();
+            label7 = new Label();
+            lvPlantList = new ListView();
+            llRemovePlant = new LinkLabel();
+            gbNewPlant = new GroupBox();
+            btnCreatePlant = new Button();
+            button1 = new Button();
+            label8 = new Label();
+            flpNewPlantSettings = new FlowLayoutPanel();
+            label9 = new Label();
+            cmbPlantType = new ComboBox();
+            gbEditPlant = new GroupBox();
+            btnSavePlant = new Button();
+            button2 = new Button();
+            label10 = new Label();
+            flpSelectedPlantSettings = new FlowLayoutPanel();
             btnFishTab = new Button();
             btnPlantTab = new Button();
-            tbScale = new TextBox();
-            label6 = new Label();
-            btnMakeSeaweed = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             contextMenuStrip1.SuspendLayout();
             tcMain.SuspendLayout();
             tabFish.SuspendLayout();
             tabPlants.SuspendLayout();
+            gbNewPlant.SuspendLayout();
+            gbEditPlant.SuspendLayout();
             SuspendLayout();
             // 
             // lvFishList
@@ -286,11 +300,11 @@
             btnIdentifyFish.BackColor = Color.Teal;
             btnIdentifyFish.FlatStyle = FlatStyle.Flat;
             btnIdentifyFish.ForeColor = Color.White;
-            btnIdentifyFish.Location = new Point(1037, 29);
+            btnIdentifyFish.Location = new Point(1044, 29);
             btnIdentifyFish.Name = "btnIdentifyFish";
-            btnIdentifyFish.Size = new Size(203, 80);
+            btnIdentifyFish.Size = new Size(203, 74);
             btnIdentifyFish.TabIndex = 5;
-            btnIdentifyFish.Text = "Identify Fish";
+            btnIdentifyFish.Text = "Identify";
             btnIdentifyFish.UseVisualStyleBackColor = false;
             btnIdentifyFish.Click += btnIdentifyFish_Click;
             // 
@@ -341,15 +355,204 @@
             // tabPlants
             // 
             tabPlants.BackColor = Color.FromArgb(0, 105, 148);
-            tabPlants.Controls.Add(tbScale);
-            tabPlants.Controls.Add(label6);
-            tabPlants.Controls.Add(btnMakeSeaweed);
+            tabPlants.Controls.Add(label7);
+            tabPlants.Controls.Add(lvPlantList);
+            tabPlants.Controls.Add(llRemovePlant);
+            tabPlants.Controls.Add(gbNewPlant);
+            tabPlants.Controls.Add(gbEditPlant);
             tabPlants.Location = new Point(4, 5);
             tabPlants.Name = "tabPlants";
             tabPlants.Padding = new Padding(3);
             tabPlants.Size = new Size(1220, 718);
             tabPlants.TabIndex = 1;
             tabPlants.Text = "Plants";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 15F);
+            label7.ForeColor = Color.WhiteSmoke;
+            label7.Location = new Point(0, 2);
+            label7.Margin = new Padding(5, 0, 5, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(90, 28);
+            label7.TabIndex = 13;
+            label7.Text = "Plant List";
+            // 
+            // lvPlantList
+            // 
+            lvPlantList.BackColor = Color.FromArgb(0, 79, 111);
+            lvPlantList.BorderStyle = BorderStyle.None;
+            lvPlantList.ForeColor = SystemColors.Window;
+            lvPlantList.FullRowSelect = true;
+            lvPlantList.Location = new Point(0, 36);
+            lvPlantList.Margin = new Padding(5, 6, 5, 6);
+            lvPlantList.MultiSelect = false;
+            lvPlantList.Name = "lvPlantList";
+            lvPlantList.Size = new Size(296, 681);
+            lvPlantList.TabIndex = 12;
+            lvPlantList.UseCompatibleStateImageBehavior = false;
+            lvPlantList.View = View.Details;
+            lvPlantList.ItemSelectionChanged += lvPlantList_ItemSelectionChanged;
+            // 
+            // llRemovePlant
+            // 
+            llRemovePlant.AutoSize = true;
+            llRemovePlant.ForeColor = Color.WhiteSmoke;
+            llRemovePlant.LinkColor = Color.WhiteSmoke;
+            llRemovePlant.Location = new Point(208, 3);
+            llRemovePlant.Name = "llRemovePlant";
+            llRemovePlant.Size = new Size(88, 28);
+            llRemovePlant.TabIndex = 14;
+            llRemovePlant.TabStop = true;
+            llRemovePlant.Text = "Kill Plant";
+            llRemovePlant.VisitedLinkColor = Color.Black;
+            llRemovePlant.LinkClicked += llRemovePlant_LinkClicked;
+            // 
+            // gbNewPlant
+            // 
+            gbNewPlant.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            gbNewPlant.Controls.Add(btnCreatePlant);
+            gbNewPlant.Controls.Add(button1);
+            gbNewPlant.Controls.Add(label8);
+            gbNewPlant.Controls.Add(flpNewPlantSettings);
+            gbNewPlant.Controls.Add(label9);
+            gbNewPlant.Controls.Add(cmbPlantType);
+            gbNewPlant.ForeColor = Color.WhiteSmoke;
+            gbNewPlant.Location = new Point(304, 2);
+            gbNewPlant.Name = "gbNewPlant";
+            gbNewPlant.Size = new Size(917, 344);
+            gbNewPlant.TabIndex = 15;
+            gbNewPlant.TabStop = false;
+            gbNewPlant.Text = "Create New Plant";
+            // 
+            // btnCreatePlant
+            // 
+            btnCreatePlant.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnCreatePlant.BackColor = Color.Teal;
+            btnCreatePlant.FlatStyle = FlatStyle.Flat;
+            btnCreatePlant.ForeColor = Color.White;
+            btnCreatePlant.Location = new Point(6, 268);
+            btnCreatePlant.Name = "btnCreatePlant";
+            btnCreatePlant.Size = new Size(203, 70);
+            btnCreatePlant.TabIndex = 13;
+            btnCreatePlant.Text = "Create Plant";
+            btnCreatePlant.UseVisualStyleBackColor = false;
+            btnCreatePlant.Click += btnCreatePlant_Click;
+            // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            button1.BackColor = Color.Teal;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(6, 512);
+            button1.Name = "button1";
+            button1.Size = new Size(203, 70);
+            button1.TabIndex = 4;
+            button1.Text = "Create Fish";
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(215, 30);
+            label8.Name = "label8";
+            label8.Size = new Size(176, 28);
+            label8.TabIndex = 3;
+            label8.Text = "New Plant Settings";
+            // 
+            // flpNewPlantSettings
+            // 
+            flpNewPlantSettings.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            flpNewPlantSettings.FlowDirection = FlowDirection.TopDown;
+            flpNewPlantSettings.Location = new Point(215, 61);
+            flpNewPlantSettings.Name = "flpNewPlantSettings";
+            flpNewPlantSettings.Size = new Size(695, 277);
+            flpNewPlantSettings.TabIndex = 2;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(6, 30);
+            label9.Name = "label9";
+            label9.Size = new Size(102, 28);
+            label9.TabIndex = 1;
+            label9.Text = "Plant Type";
+            // 
+            // cmbPlantType
+            // 
+            cmbPlantType.BackColor = Color.Teal;
+            cmbPlantType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbPlantType.FlatStyle = FlatStyle.Flat;
+            cmbPlantType.ForeColor = Color.White;
+            cmbPlantType.FormattingEnabled = true;
+            cmbPlantType.Location = new Point(6, 61);
+            cmbPlantType.Name = "cmbPlantType";
+            cmbPlantType.Size = new Size(203, 36);
+            cmbPlantType.TabIndex = 0;
+            cmbPlantType.SelectedIndexChanged += cmbPlantType_SelectedIndexChanged;
+            cmbPlantType.Format += cmbPlantType_Format;
+            // 
+            // gbEditPlant
+            // 
+            gbEditPlant.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            gbEditPlant.Controls.Add(btnSavePlant);
+            gbEditPlant.Controls.Add(button2);
+            gbEditPlant.Controls.Add(label10);
+            gbEditPlant.Controls.Add(flpSelectedPlantSettings);
+            gbEditPlant.ForeColor = Color.White;
+            gbEditPlant.Location = new Point(304, 352);
+            gbEditPlant.Name = "gbEditPlant";
+            gbEditPlant.Size = new Size(917, 365);
+            gbEditPlant.TabIndex = 16;
+            gbEditPlant.TabStop = false;
+            gbEditPlant.Text = "Edit Selected Plant";
+            // 
+            // btnSavePlant
+            // 
+            btnSavePlant.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnSavePlant.BackColor = Color.Teal;
+            btnSavePlant.FlatStyle = FlatStyle.Flat;
+            btnSavePlant.ForeColor = Color.White;
+            btnSavePlant.Location = new Point(6, 289);
+            btnSavePlant.Name = "btnSavePlant";
+            btnSavePlant.Size = new Size(203, 70);
+            btnSavePlant.TabIndex = 12;
+            btnSavePlant.Text = "Save New Settings";
+            btnSavePlant.UseVisualStyleBackColor = false;
+            btnSavePlant.Click += btnSavePlant_Click;
+            // 
+            // button2
+            // 
+            button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button2.BackColor = Color.Teal;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(723, 554);
+            button2.Name = "button2";
+            button2.Size = new Size(203, 70);
+            button2.TabIndex = 4;
+            button2.Text = "Save New Settings";
+            button2.UseVisualStyleBackColor = false;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(215, 51);
+            label10.Name = "label10";
+            label10.Size = new Size(211, 28);
+            label10.TabIndex = 3;
+            label10.Text = "Selected Plant Settings";
+            // 
+            // flpSelectedPlantSettings
+            // 
+            flpSelectedPlantSettings.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            flpSelectedPlantSettings.FlowDirection = FlowDirection.TopDown;
+            flpSelectedPlantSettings.Location = new Point(215, 82);
+            flpSelectedPlantSettings.Name = "flpSelectedPlantSettings";
+            flpSelectedPlantSettings.Size = new Size(696, 277);
+            flpSelectedPlantSettings.TabIndex = 2;
             // 
             // btnFishTab
             // 
@@ -378,37 +581,6 @@
             btnPlantTab.Text = "Plants";
             btnPlantTab.UseVisualStyleBackColor = false;
             btnPlantTab.Click += btnPlantTab_Click;
-            // 
-            // tbScale
-            // 
-            tbScale.Location = new Point(69, 52);
-            tbScale.Name = "tbScale";
-            tbScale.Size = new Size(140, 34);
-            tbScale.TabIndex = 11;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(6, 55);
-            label6.Name = "label6";
-            label6.Size = new Size(57, 28);
-            label6.TabIndex = 9;
-            label6.Text = "Scale";
-            // 
-            // btnMakeSeaweed
-            // 
-            btnMakeSeaweed.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnMakeSeaweed.BackColor = Color.Teal;
-            btnMakeSeaweed.FlatStyle = FlatStyle.Flat;
-            btnMakeSeaweed.ForeColor = Color.White;
-            btnMakeSeaweed.Location = new Point(6, 6);
-            btnMakeSeaweed.Name = "btnMakeSeaweed";
-            btnMakeSeaweed.Size = new Size(203, 40);
-            btnMakeSeaweed.TabIndex = 10;
-            btnMakeSeaweed.Text = "Create Seaweed";
-            btnMakeSeaweed.UseVisualStyleBackColor = false;
-            btnMakeSeaweed.Click += btnMakeSeaweed_Click;
             // 
             // frmMain
             // 
@@ -439,6 +611,10 @@
             tabFish.PerformLayout();
             tabPlants.ResumeLayout(false);
             tabPlants.PerformLayout();
+            gbNewPlant.ResumeLayout(false);
+            gbNewPlant.PerformLayout();
+            gbEditPlant.ResumeLayout(false);
+            gbEditPlant.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -471,8 +647,20 @@
         private TabPage tabPlants;
         private Button btnFishTab;
         private Button btnPlantTab;
-        private TextBox tbScale;
-        private Label label6;
-        private Button btnMakeSeaweed;
+        private Label label7;
+        private ListView lvPlantList;
+        private LinkLabel llRemovePlant;
+        private GroupBox gbNewPlant;
+        private Button button1;
+        private Label label8;
+        private FlowLayoutPanel flpNewPlantSettings;
+        private Label label9;
+        private ComboBox cmbPlantType;
+        private GroupBox gbEditPlant;
+        private Button button2;
+        private Label label10;
+        private FlowLayoutPanel flpSelectedPlantSettings;
+        private Button btnCreatePlant;
+        private Button btnSavePlant;
     }
 }

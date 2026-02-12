@@ -73,7 +73,7 @@ namespace DesktopAquarium.Fish
             
         }
 
-        public override void SettingsChanged_Raised(object? sender, SettingsChangedEventArgs e)
+        public override void SettingsChanged_Raised(object? sender, FishSettingsChangedEventArgs e)
         {
             base.SettingsChanged_Raised(sender, e);
 

@@ -10,9 +10,12 @@ namespace DesktopAquarium.Settings
     {
         public List<BaseFishSettings> FishList { get; set; }
 
+        public List<BasePlantSettings> PlantList { get; set; }
+
         public AquariumSettings()
         {
             FishList = [];
+            PlantList = [];
         }
     }
 }

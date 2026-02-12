@@ -5,24 +5,39 @@ namespace DesktopAquarium.Plants
 {
     public partial class BasePlant : Form
     {
-        public PointF Position { get; set; }
-
         private bool _isDragging;
+        private int _identifyPlantCountdown;
         private Point _targetLocation;
         private Point _dragForm;
         private Point _dragCursor;
+        private BasePlantSettings _settings;
+
+        private System.Windows.Forms.Timer _identifyPlantTimer;
 
         public byte[] IdleGif { get; set; }
 
-        public decimal Scale { get; set; }
+
+        public event EventHandler<int> LocationChanged;
+
+        private bool _initialLoad = true;
+
+        public decimal ScaleTiny { get; set; } = 0.2m;
+        public decimal ScaleSmall { get; set; } = 0.6m;
+        public decimal ScaleStandard { get; set; } = 1;
+        public decimal ScaleLarge { get; set; } = 2;
+        public decimal ScaleGiant { get; set; } = 3;
 
         public BasePlant(BasePlantSettings settings)
         {
             InitializeComponent();
-            Scale = settings.Scale;
-            if (Scale <= 0)
-                Scale = 1;
+            _settings = settings;
+            TopMost = _settings.TopMost;
             Location = settings.Location;
+            lbPlantName.Text = settings.PlantID.ToString();
+
+            _identifyPlantTimer = new();
+            _identifyPlantTimer.Interval = 1000;
+            _identifyPlantTimer.Tick += IdentifyPlantTimer_Elapsed;
 
             pbMain.MouseDown += MouseDown_Raised;
             pbMain.MouseUp += frmMain_MouseUp;
@@ -34,13 +49,36 @@ namespace DesktopAquarium.Plants
 
         public void InitializeForm(int width, int height)
         {
-            Width = (int)(width * Scale);
-            Height = (int)(height * Scale);
-            pbMain.Width = (int)(width * Scale);
-            pbMain.Height = (int)(height * Scale);
+            decimal scale;
+            switch (_settings.Scale)
+            {
+                case Enums.Scale.Tiny:
+                    scale = ScaleTiny;
+                    break;
+                case Enums.Scale.Small:
+                    scale = ScaleSmall;
+                    break;
+                case Enums.Scale.Large:
+                    scale = ScaleLarge;
+                    break;
+                case Enums.Scale.Giant:
+                    scale = ScaleGiant;
+                    break;
+                case Enums.Scale.Standard:
+                default:
+                    scale = 1m;
+                    break;
+            }
+
+            Width = (int)(width * scale);
+            Height = (int)(height * scale);
+            pbMain.Width = (int)(width * scale);
+            pbMain.Height = (int)(height * scale);
             pbMain.Image = ImageHelper.LoadImageFromBytes(IdleGif);
 
-            OnMove(null);
+            lbPlantName.Location = new Point((Width / 2) - (lbPlantName.Width / 2), (Height / 2) - (lbPlantName.Height / 2));
+
+            _initialLoad = false;
         }
 
         public void OnExit(object sender, EventArgs e)
@@ -52,16 +90,56 @@ namespace DesktopAquarium.Plants
         {
             base.OnMove(e);
 
-            var screen = Screen.FromControl(this).WorkingArea;
-
-            int bottomY = screen.Bottom - this.Height;
-
-            if (this.Top < bottomY)
+            if (!_initialLoad)
             {
-                this.Top = bottomY;
+                var screen = Screen.FromControl(this).WorkingArea;
+
+                int bottomY = screen.Bottom - this.Height;
+
+                if (this.Top < bottomY)
+                {
+                    this.Top = bottomY;
+                }
             }
         }
 
+        public virtual void IdentifyPlant_Raised(object? sender, EventArgs e)
+        {
+            lbPlantName.Visible = true;
+            _identifyPlantCountdown = 4;
+            _identifyPlantTimer.Start();
+        }
+
+        private void IdentifyPlantTimer_Elapsed(object? sender, EventArgs e)
+        {
+            if (_identifyPlantCountdown > 0)
+            {
+                _identifyPlantCountdown--;
+                return;
+            }
+
+            _identifyPlantCountdown = 4;
+            _identifyPlantTimer.Stop();
+            lbPlantName.Visible = false;
+        }
+
+        public virtual void KillPlant_Raised(object? sender, KillPlantEventArgs e)
+        {
+            if (e.PlantID != _settings.PlantID)
+                return;
+
+            Close();
+            Dispose();
+        }
+
+        public virtual void SettingsChanged_Raised(object? sender, PlantSettingsChangedEventArgs e)
+        {
+            if (e.PlantID != _settings.PlantID)
+                return;
+
+            _settings = e.NewSettings;
+            lbPlantName.Text = _settings.PlantID.ToString();
+        }
 
         public virtual void MouseDown_Raised(object? sender, MouseEventArgs e)
         {
@@ -87,7 +165,8 @@ namespace DesktopAquarium.Plants
             if (e.Button == MouseButtons.Left)
             {
                 _isDragging = false;
-                Position = Location;
+                _settings.Location = Location;
+                LocationChanged?.Invoke(this, _settings.PlantID);
             }
         }
     }

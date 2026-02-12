@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace DesktopAquarium
 {
-    public class SettingsChangedEventArgs : EventArgs
+    public class FishSettingsChangedEventArgs : EventArgs
     {
         public BaseFishSettings NewSettings { get; set; }
         public int FishID { get; set; }
 
-        public SettingsChangedEventArgs(BaseFishSettings newSettings, int fishID)
+        public FishSettingsChangedEventArgs(BaseFishSettings newSettings, int fishID)
         {
             NewSettings = newSettings;
             FishID = fishID;
