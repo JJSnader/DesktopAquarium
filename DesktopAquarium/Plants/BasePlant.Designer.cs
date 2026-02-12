@@ -83,6 +83,7 @@
             Controls.Add(pbMain);
             FormBorderStyle = FormBorderStyle.None;
             Name = "BasePlant";
+            ShowInTaskbar = false;
             StartPosition = FormStartPosition.Manual;
             Text = "BasePlant";
             TransparencyKey = SystemColors.Control;
